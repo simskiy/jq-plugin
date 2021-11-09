@@ -1,0 +1,48 @@
+{
+  "name": "jqplugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production webpack",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simskiy/jq-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simskiy/jq-plugin/issues"
+  },
+  "homepage": "https://github.com/simskiy/jq-plugin#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/jest": "^27.0.2",
+    "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.2.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-webpack-plugin": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.3.1",
+    "mini-css-extract-plugin": "^2.4.4",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "core-js": "^3.19.1"
+  }
+}
