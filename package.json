@@ -24,6 +24,7 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@types/jest": "^27.0.2",
+    "@types/jquery": "^3.5.8",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
@@ -43,6 +44,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "core-js": "^3.19.1"
+    "core-js": "^3.19.1",
+    "jquery": "^3.6.0"
   }
 }

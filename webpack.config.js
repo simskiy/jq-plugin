@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
+const webpack = require('webpack')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
@@ -36,8 +37,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css')
     }),
-    // eslint-disable-next-line no-undef
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
   ],
 
   devServer: {
