@@ -6,7 +6,8 @@ const webpack = require('webpack')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
-const filename = (ext) => isDev ? `main.${ext}` : `main.[chunkhash:8].${ext}`
+// eslint-disable-next-line max-len
+const filename = (ext) => isDev ? `[name].${ext}` : `[name].[chunkhash:8].${ext}`
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -27,6 +28,11 @@ module.exports = {
 
   mode: isProd ? 'production' : 'development',
   devtool: isDev ? 'source-map' : false,
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 
   plugins: [
     new HtmlWebpackPlugin({
