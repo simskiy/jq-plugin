@@ -7,13 +7,13 @@ const webpack = require('webpack')
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 // eslint-disable-next-line max-len
-const filename = (ext) => isDev ? `[name].${ext}` : `[name].[chunkhash:8].${ext}`
+const filename = (ext, hash) => isDev ? `[name].${ext}` : `[name].[${hash}:8].${ext}`
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.ts',
   output: {
-    filename: filename('js'),
+    filename: filename('js', 'chunkhash'),
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
@@ -41,7 +41,7 @@ module.exports = {
       favicon: './favicon.ico'
     }),
     new MiniCssExtractPlugin({
-      filename: filename('css')
+      filename: filename('css', 'contenthash')
     }),
     new ESLintPlugin(),
     new webpack.ProvidePlugin({
