@@ -9,4 +9,4 @@ import '@js/sum.ts'
 // eslint-disable-next-line quotes
 console.log("it's working!!!")
 
-$('.container').css('color', 'black')
+$('.container').css('color', 'green')
