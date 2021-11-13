@@ -3,6 +3,10 @@ import 'regenerator-runtime/runtime'
 import 'jquery'
 
 import './styles/main.scss'
-import '@js/sum.ts'
+import {Slider} from './components/slider/Slider'
 
-// eslint-disable-next-line quotes
+const slider = new Slider('#app', {
+  text: 'hello',
+})
+
+slider.render()

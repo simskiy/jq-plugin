@@ -18,11 +18,12 @@ module.exports = {
     clean: true
   },
   resolve: {
-    extensions: ['.js', 'ts', 'tsx'],
+    extensions: ['.js', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@styles': path.resolve(__dirname, 'src/styles'),
-      '@js': path.resolve(__dirname, 'src/js')
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@core': path.resolve(__dirname, 'src/core')
     }
   },
 
