@@ -6,7 +6,7 @@ import './styles/main.scss'
 import {Slider} from './components/slider/Slider'
 
 const slider = new Slider('#app', {
-  components: []
+  text: 'hello',
 })
 
-console.log('Slider: ', slider)
+slider.render()
