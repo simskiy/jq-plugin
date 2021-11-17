@@ -1,10 +1,9 @@
 import { capitalize } from "./utils";
 
 export class Observer {
-  $root: JQuery;
+  // $root: JQuery;
   listeners: string[];
   [method: string]: any;
-
 
   constructor($root: JQuery, listeners: string[]) {
     if(!$root) {
@@ -18,12 +17,21 @@ export class Observer {
     if (this.listeners) {
       this.listeners.forEach(listener => {
         const method: string = getMethodName(listener)
-        // this.$root[0].addEventListener(listener, this[method])
-        this.$root.on(listener, this[method])
+        if (!this[method])
+          throw new Error(`Метод ${method} не реализован в компоненте ${this.name}`)
+        this.$root.on(listener, this[method].bind(this))
       })
     }
   }
-  removeListeners() {}
+
+  removeListeners() {
+    if (this.listeners) {
+      this.listeners.forEach(listener => {
+        const method: string = getMethodName(listener)
+        this.$root.off(listener, this[method])
+      })
+    }
+  }
 }
 
 function getMethodName (event: string) {

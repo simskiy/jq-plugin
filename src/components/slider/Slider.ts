@@ -4,7 +4,7 @@ import {Scale} from '@components/scale/Scale'
 
 
 export class Slider {
-  $el: JQuery
+  $el: JQuery;
 
   constructor(selector: string) {
     this.$el = $(selector)

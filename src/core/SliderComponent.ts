@@ -10,6 +10,7 @@ interface Options {
 export class SliderComponent extends Observer {
   constructor($root: JQuery, options: Options) {
     super($root, options.listeners);
+    this.name = options.name
   }
 
   // return template of component
@@ -19,5 +20,9 @@ export class SliderComponent extends Observer {
 
   init() {
     this.initListeners()
+  }
+
+  destroy() {
+    this.removeListeners()
   }
 }
