@@ -5,8 +5,6 @@ import 'jquery'
 import './styles/main.scss'
 import {Slider} from './components/slider/Slider'
 
-const slider = new Slider('#app', {
-  text: 'hello',
-})
+const slider = new Slider('#app')
 
 slider.render()
