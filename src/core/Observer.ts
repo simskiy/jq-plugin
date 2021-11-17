@@ -1,8 +1,12 @@
-export class Observer {
-  $root: any;
-  listeners: string[];
+import { capitalize } from "./utils";
 
-  constructor($root: any, listeners: string[]) {
+export class Observer {
+  $root: JQuery;
+  listeners: string[];
+  [method: string]: any;
+
+
+  constructor($root: JQuery, listeners: string[]) {
     if(!$root) {
       throw new Error('no $root provided for Observer')
     }
@@ -11,7 +15,17 @@ export class Observer {
   }
 
   initListeners() {
-    console.log(this.listeners)
+    if (this.listeners) {
+      this.listeners.forEach(listener => {
+        const method: string = getMethodName(listener)
+        // this.$root[0].addEventListener(listener, this[method])
+        this.$root.on(listener, this[method])
+      })
+    }
   }
   removeListeners() {}
+}
+
+function getMethodName (event: string) {
+  return `on${capitalize(event)}`
 }

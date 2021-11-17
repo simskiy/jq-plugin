@@ -5,8 +5,10 @@ interface Options {
   listeners: string[]
 }
 
+
+
 export class SliderComponent extends Observer {
-  constructor($root: any, options: Options) {
+  constructor($root: JQuery, options: Options) {
     super($root, options.listeners);
   }
 

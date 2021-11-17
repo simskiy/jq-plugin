@@ -3,7 +3,7 @@ import { SliderComponent } from "@core/SliderComponent";
 export class Scale extends SliderComponent {
   static className = 'scale'
 
-  constructor($root: any) {
+  constructor($root: JQuery) {
     super($root, {
       name: 'Scale',
       listeners: []

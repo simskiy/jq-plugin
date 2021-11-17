@@ -3,7 +3,7 @@ import { SliderComponent } from "@core/SliderComponent";
 export class Thumb extends SliderComponent {
   static className = 'thumb'
 
-  constructor($root: any) {
+  constructor($root: JQuery) {
     super($root, {
       name: 'Thumb',
       listeners: ['click']
@@ -17,7 +17,7 @@ export class Thumb extends SliderComponent {
             `
   }
 
-  onInput(event: any) {
+  onClick(event: any): void {
     console.log('thumb onInput: ', event)
   }
 }

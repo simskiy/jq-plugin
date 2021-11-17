@@ -2,19 +2,12 @@ import {Track} from '@components/track/Track'
 import {Thumb} from '@components/thumb/Thumb'
 import {Scale} from '@components/scale/Scale'
 
-interface Options {
-  text: string;
-  min?: number;
-  max?: number;
-}
 
 export class Slider {
-  $el: any
-  txt: string
+  $el: JQuery
 
-  constructor(selector: string, options: Options) {
+  constructor(selector: string) {
     this.$el = $(selector)
-    this.txt = options.text
   }
 
   static components = [Track, Thumb, Scale]

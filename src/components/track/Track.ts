@@ -3,7 +3,7 @@ import { SliderComponent } from "@core/SliderComponent";
 export class Track extends SliderComponent {
   static className = 'slider__track'
 
-  constructor($root: any) {
+  constructor($root: JQuery) {
     super($root, {
       name: 'Track',
       listeners: []
