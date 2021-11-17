@@ -19,7 +19,8 @@ export class Observer {
         const method: string = getMethodName(listener)
         if (!this[method])
           throw new Error(`Метод ${method} не реализован в компоненте ${this.name}`)
-        this.$root.on(listener, this[method].bind(this))
+        this[method] = this[method].bind(this)
+        this.$root.on(listener, this[method])
       })
     }
   }

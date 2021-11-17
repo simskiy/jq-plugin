@@ -19,6 +19,5 @@ export class Thumb extends SliderComponent {
 
   onClick(event: any): void {
     console.log('thumb onInput: ', event)
-    console.log(this.$root)
   }
 }
