@@ -3,7 +3,8 @@ import 'regenerator-runtime/runtime'
 import 'jquery'
 
 import './styles/main.scss'
-import '@js/sum.ts'
+import {Slider} from './components/slider/Slider'
+
 
 // eslint-disable-next-line quotes
 
@@ -87,3 +88,8 @@ function maxWidthScale(elem: JQuery<HTMLElement>) {
   })
   return Math.max.apply(null, arr)
 }
+
+// const slider = new Slider('#app')
+
+// slider.render()
+

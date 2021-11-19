@@ -1,12 +1,20 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "strict": true,
     "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@styles/*": ["src/styles/*"],
+      "@components/*": ["src/components/*"],
+      "@core/*": ["src/core/*"],
+    }
   }
 }
