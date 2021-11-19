@@ -8,26 +8,23 @@
 </head>
 <body>
 	<div id="app" class="container">
-    <div class="slider">
-      <div class="slider__line">
-        <div class="slider__line--busy data-thumb="first" style="right: 50%"></div>
-        <div class="slider__line--busy data-thumb="second" style="display: none"></div>
-      </div>
-      <div class="slider__thumb" style="left: 50%"></div>
-      <ul class="scale">
-        <li class="scale__point">0</li>
-        <li class="scale__point">10</li>
-        <li class="scale__point">20</li>
-        <li class="scale__point">30</li>
-        <li class="scale__point">40</li>
-        <li class="scale__point">50</li>
-        <li class="scale__point">60</li>
-        <li class="scale__point">70</li>
-        <li class="scale__point">80</li>
-        <li class="scale__point">90</li>
-        <li class="scale__point">100</li>
-      </ul>
+
+    <div class="values">
+      <span id="range1">0</span>
+      <span>&dash;</span>
+      <span id="range2">100</span>
     </div>
+
+    <div class="range">
+      <div class="range__track"></div>
+      <input type="range" min="0" max="100" step="5" value="30" id="slider-1">
+      <input type="range" min="0 "max="100 "step="5" value="70" id="slider-2">
+    </div>
+
+    <div class="scale">
+      шкала
+    </div>
+
 	</div>
 </body>
 </html>
