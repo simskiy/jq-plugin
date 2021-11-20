@@ -11,19 +11,24 @@ export class Scale extends SliderComponent {
   }
 
   toHTML() {
-    return `  <ul class="scale__inner">
-                <li class="scale__point">0</li>
-                <li class="scale__point">10</li>
-                <li class="scale__point">20</li>
-                <li class="scale__point">30</li>
-                <li class="scale__point">40</li>
-                <li class="scale__point">50</li>
-                <li class="scale__point">60</li>
-                <li class="scale__point">70</li>
-                <li class="scale__point">80</li>
-                <li class="scale__point">90</li>
-                <li class="scale__point">100</li>
-              </ul>
+    return `
+            <ul class="scale__list">
+              <li class="scale__label">0</li>
+              <li class="scale__label">10</li>
+              <li class="scale__label">20</li>
+              <li class="scale__label">30</li>
+              <li class="scale__label">40</li>
+              <li class="scale__label">50</li>
+              <li class="scale__label">60</li>
+              <li class="scale__label">70</li>
+              <li class="scale__label">80</li>
+              <li class="scale__label">90</li>
+              <li class="scale__label">100</li>
+            </ul>
            `
+  }
+
+  initComponent() {
+    console.log('init Scale')
   }
 }

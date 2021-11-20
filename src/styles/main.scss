@@ -3,7 +3,6 @@
   border: 1px solid black;
   padding: 20px;
 
-
   .range {
     position: relative;
     width: 100%;
@@ -88,7 +87,6 @@
       border-radius: 5px;
     }
   }
-}
   .values {
     display: inline-block;
     width: calc(100% - 10px);
@@ -107,7 +105,7 @@
   }
   .scale {
     &__list {
-      position: relative;
+      position: relativ;
       display: flex;
       width: 100%;
       justify-content: space-between;

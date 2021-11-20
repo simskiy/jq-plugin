@@ -1,5 +1,5 @@
-import {Track} from '@components/track/Track'
-import {Thumb} from '@components/thumb/Thumb'
+import {Values} from '@/components/values/Values'
+import {Range} from '@/components/range/Range'
 import {Scale} from '@components/scale/Scale'
 
 
@@ -10,7 +10,7 @@ export class Slider {
     this.$el = $(selector)
   }
 
-  static components = [Track, Thumb, Scale]
+  static components = [Values, Range, Scale]
 
   render() {
     this.$el.append('<div class="slider"></div>')
@@ -23,6 +23,8 @@ export class Slider {
       $el.append(component.toHTML())
       return component
     })
-  components.forEach(component => component.init())
+    components.forEach(component => {
+      component.init()
+    })
   }
 }

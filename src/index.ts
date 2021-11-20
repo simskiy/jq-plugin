@@ -36,7 +36,6 @@ function slide1(event: any) {
     valueLabelOne.css('left', getPercentPosition(val1))
   }
   fillColor()
-  console.log(event)
 }
 
 function slide2() {
@@ -89,7 +88,6 @@ function maxWidthScale(elem: JQuery<HTMLElement>) {
   return Math.max.apply(null, arr)
 }
 
-// const slider = new Slider('#app')
+const slider = new Slider('#app')
 
-// slider.render()
-
+slider.render()
