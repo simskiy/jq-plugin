@@ -88,7 +88,8 @@
     }
   }
   .values {
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
     width: calc(100% - 10px);
     position: relative;
     margin: auto;
@@ -96,7 +97,7 @@
     margin-right: auto;
 
     &__lable {
-      position: absolute;
+      // position: absolute;
       display: flex;
       width: 30px;
       justify-content: center;

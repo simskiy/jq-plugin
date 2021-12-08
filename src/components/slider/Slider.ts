@@ -9,8 +9,8 @@ export class Slider {
   constructor(selector: string) {
     this.$el = $(selector)
   }
-
   static components = [Values, Range, Scale]
+  // static components = model.components
 
   render() {
     this.$el.append('<div class="slider"></div>')
