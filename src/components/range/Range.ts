@@ -14,12 +14,12 @@ export class Range extends SliderComponent {
       step: undefined
     });
   }
-  minGap = this.step
-  slider1!: JQuery<HTMLElement>
-  slider2!: JQuery<HTMLElement>
-  label1!: JQuery<HTMLElement>
-  label2!: JQuery<HTMLElement>
-  rangeTrack!: JQuery<HTMLElement>
+
+  slider1: JQuery<HTMLElement> | undefined
+  slider2: JQuery<HTMLElement> | undefined
+  label1: JQuery<HTMLElement> | undefined
+  label2: JQuery<HTMLElement> | undefined
+  rangeTrack: JQuery<HTMLElement> | undefined
 
   toHTML() {
     return `
@@ -30,10 +30,10 @@ export class Range extends SliderComponent {
   }
 
   onInput(event: Event) {
-    if (event.target === this.slider1[0]) {
+    if (this.slider1 && event.target === this.slider1[0]) {
       drawSlide1.bind(this)()
     }
-    if (event.target === this.slider2[0]) {
+    if (this.slider2 && event.target === this.slider2[0]) {
       drawSlide2.bind(this)()
     }
   }
@@ -45,8 +45,8 @@ export class Range extends SliderComponent {
     this.label2 = this.$root.prev().children('#label2')
     this.rangeTrack = this.$root.children('.range__track')
 
-    this.slider1.attr(setAttrRanges.bind(this)(this.value1))
-    this.slider2.attr(setAttrRanges.bind(this)(this.value2))
+    if (this.slider1) this.slider1.attr(setAttrRanges.bind(this)(this.value1))
+    if (this.slider2) this.slider2.attr(setAttrRanges.bind(this)(this.value2))
 
     drawSlide1.bind(this)()
     drawSlide2.bind(this)()

@@ -2,15 +2,14 @@ import {Values} from '@/components/values/Values'
 import {Range} from '@/components/range/Range'
 import {Scale} from '@components/scale/Scale'
 
-
 export class Slider {
   $el: JQuery;
 
-  constructor(selector: string) {
-    this.$el = $(selector)
+  constructor(selector: JQuery<HTMLElement>) {
+    this.$el = selector
   }
   static components = [Values, Range, Scale]
-  // static components = model.components
+
 
   render() {
     this.$el.append('<div class="slider"></div>')
@@ -26,5 +25,6 @@ export class Slider {
     components.forEach(component => {
       component.init()
     })
+    return components
   }
 }
