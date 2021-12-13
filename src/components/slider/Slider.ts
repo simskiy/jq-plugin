@@ -17,7 +17,7 @@ export class Slider {
 
    const components = Slider.components.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
-      const $el = $(`.slider .${Component.className}`)
+      const $el = this.$el.find(`.${Component.className}`)
       const component = new Component($el)
       $el.append(component.toHTML())
       return component
@@ -25,6 +25,6 @@ export class Slider {
     components.forEach(component => {
       component.init()
     })
-    return components
+    // return components
   }
 }
