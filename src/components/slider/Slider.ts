@@ -13,6 +13,7 @@ export class Slider {
 
   render() {
     this.$el.append('<div class="slider"></div>')
+    $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
 
    const components = Slider.components.map((Component) => {
