@@ -6,7 +6,7 @@ export class Scale extends SliderComponent {
   constructor($root: JQuery) {
     super($root, {
       name: 'Scale',
-      listeners: []
+      listeners: ['test']
     })
   }
 
@@ -26,6 +26,10 @@ export class Scale extends SliderComponent {
               <li class="scale__label">100</li>
             </ul>
            `
+  }
+
+  onTest() {
+    console.log('test')
   }
 
   initComponent() {

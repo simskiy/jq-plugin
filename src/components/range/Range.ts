@@ -1,4 +1,5 @@
 import { SliderComponent } from "@core/SliderComponent";
+import { RangeDraw } from "./RangeDraw";
 
 export class Range extends SliderComponent {
   static className = 'range'
@@ -38,7 +39,9 @@ export class Range extends SliderComponent {
     }
   }
 
-  initComponent () {
+  init () {
+    super.init()
+
     this.slider1 = this.$root.children('#slider-1')
     this.slider2 = this.$root.children('#slider-2')
     this.label1 = this.$root.prev().children('#label1')
@@ -47,6 +50,10 @@ export class Range extends SliderComponent {
 
     if (this.slider1) this.slider1.attr(setAttrRanges.bind(this)(this.value1))
     if (this.slider2) this.slider2.attr(setAttrRanges.bind(this)(this.value2))
+
+    const slider = new RangeDraw(this.$root)
+    slider.drawSlide_1()
+
 
     drawSlide1.bind(this)()
     drawSlide2.bind(this)()

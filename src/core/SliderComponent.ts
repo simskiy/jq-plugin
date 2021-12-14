@@ -41,7 +41,6 @@ export class SliderComponent extends Observer {
 
   init() {
     this.initListeners()
-    this.initComponent()
   }
 
   destroy() {
