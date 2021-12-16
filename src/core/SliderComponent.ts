@@ -32,8 +32,10 @@ export class SliderComponent extends Observer {
     this.value1 = options.value1 || VALUE_1
     this.value2 = options.value2 || VALUE_2
     this.step = options.step || STEP
+    this.prepare()
   }
 
+  prepare() {}
   // return template of component
   toHTML () {
     return ''
@@ -41,7 +43,6 @@ export class SliderComponent extends Observer {
 
   init() {
     this.initListeners()
-    this.initComponent()
   }
 
   destroy() {
