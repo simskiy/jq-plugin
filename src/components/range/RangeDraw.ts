@@ -1,19 +1,9 @@
-interface Options {
-  min: number
-  max: number
-  value1: number
-  value2: number
-  step: number
-}
+import {Options, FillColor} from '../../core/interfaces'
 
 export class RangeDraw {
   $root: JQuery<HTMLElement>
-  private label2: JQuery<HTMLElement> | undefined
-  private label1: JQuery<HTMLElement> | undefined
-  private slider1: JQuery<HTMLElement> | undefined
-  private slider2: JQuery<HTMLElement> | undefined
-  private rangeTrack: JQuery<HTMLElement> | undefined
   options: Options
+  step: number | undefined
 
   constructor($root: JQuery<HTMLElement>, options: Options) {
     this.$root = $root
@@ -21,12 +11,19 @@ export class RangeDraw {
     this.init()
   }
 
+  private label2: JQuery<HTMLElement> | undefined
+  private label1: JQuery<HTMLElement> | undefined
+  private slider1: JQuery<HTMLElement> | undefined
+  private slider2: JQuery<HTMLElement> | undefined
+  private rangeTrack: JQuery<HTMLElement> | undefined
+
   init() {
     this.slider2 = this.$root.children('#slider-2')
     this.slider1 = this.$root.children('#slider-1')
     this.label1 = this.$root.prev().children('#label1')
     this.label2 = this.$root.prev().children('#label2')
     this.rangeTrack = this.$root.children('.range__track')
+    this.step = this.options.step
   }
 
   drawRange() {
@@ -45,7 +42,7 @@ export class RangeDraw {
   }
 }
 
-function setAttrRanges(this: any, currentValue: number) {
+function setAttrRanges(this: RangeDraw, currentValue: number) {
   return {
     value: currentValue,
     min: this.options.min,
@@ -54,24 +51,24 @@ function setAttrRanges(this: any, currentValue: number) {
   }
 }
 
-/* Реализовал через нативный JS, так как не смог разобраться с багом JQuery. */
 function drawSlide1(this: any) {
-  if (this.slider2[0].value - this.slider1[0].value <= this.options.step) {
-      this.slider1[0].value = parseInt(this.slider2[0].value) - this.options.step
-    }
-  this.label1.text(this.slider1[0].value)
+  if (this.slider2.val() - this.slider1.val() <= this.step) {
+    this.slider1.val(this.slider2.val() - this.step)
+  }
+  this.label1.text(this.slider1.val())
   fillColor.bind(this)()
 }
 
 function drawSlide2(this: any) {
-  if (this.slider2[0].value - this.slider1[0].value <= this.options.step) {
-    this.slider2[0].value = parseInt(this.slider1[0].value) + this.options.step
+  if (this.slider2.val() - this.slider1.val() <= this.step) {
+    // Реализовал через parseInt, так как не смог разобраться с багом
+    this.slider2.val(parseInt(this.slider1.val()) + this.step)
   }
   this.label2.text(this.slider2[0].value)
   fillColor.bind(this)()
 }
 
-function fillColor(this: any) {
+function fillColor(this: FillColor) {
   let percent1: number = this.slider1.val() / this.options.max * 100
   let percent2: number = this.slider2.val() / this.options.max * 100
 

@@ -1,6 +1,14 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
 
+const MIN_VALUE = 0
+const MAX_VALUE = 100
+const ORIENTATION = 'vertical'
+const VALUE_1 = 10
+const VALUE_2 = 70
+const STEP = 5
+
+
 export class Range extends SliderComponent {
   static className = 'range'
 
@@ -8,11 +16,11 @@ export class Range extends SliderComponent {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      min: undefined,
-      max: undefined,
-      value1: undefined,
-      value2: undefined,
-      step: undefined
+      min: MIN_VALUE,
+      max: MAX_VALUE,
+      value1: VALUE_1,
+      value2: VALUE_2,
+      step: STEP
     });
   }
 
