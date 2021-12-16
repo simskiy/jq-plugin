@@ -34,8 +34,12 @@ export class Range extends SliderComponent {
     })
   }
 
-  onInput(event: Event) {
-    this.slider.drawTrack()
+  onInput(event: {target: HTMLInputElement}) {
+    if (event.target.id === 'slider-1') {
+      this.slider.drawThumb_1()
+    } else {
+      this.slider.drawThumb_2()
+    }
   }
 
   init () {

@@ -36,8 +36,11 @@ export class RangeDraw {
     drawSlide2.bind(this)()
   }
 
-  drawTrack() {
+  drawThumb_1() {
     drawSlide1.bind(this)()
+  }
+
+  drawThumb_2() {
     drawSlide2.bind(this)()
   }
 }
@@ -54,10 +57,9 @@ function setAttrRanges(this: any, currentValue: number) {
 /* Реализовал через нативный JS, так как не смог разобраться с багом JQuery. */
 function drawSlide1(this: any) {
   if (this.slider2[0].value - this.slider1[0].value <= this.options.step) {
-      // this.slider1.val(this.slider2.val() - this.options.step)
       this.slider1[0].value = parseInt(this.slider2[0].value) - this.options.step
     }
-  this.label1.text(this.slider1.val())
+  this.label1.text(this.slider1[0].value)
   fillColor.bind(this)()
 }
 
@@ -65,7 +67,7 @@ function drawSlide2(this: any) {
   if (this.slider2[0].value - this.slider1[0].value <= this.options.step) {
     this.slider2[0].value = parseInt(this.slider1[0].value) + this.options.step
   }
-  this.label2.text(this.slider2.val())
+  this.label2.text(this.slider2[0].value)
   fillColor.bind(this)()
 }
 
