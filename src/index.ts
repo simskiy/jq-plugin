@@ -5,6 +5,8 @@ import 'jquery'
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
 
+
+
 (function($) {
   $.fn.dblSlider = function () {
     const slider = new Slider(this)

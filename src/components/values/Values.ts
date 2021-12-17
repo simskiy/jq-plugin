@@ -15,8 +15,4 @@ export class Values extends SliderComponent {
               <span id="label2" class="values__lable values__lable--two">100</span>
             `
   }
-
-  initComponent() {
-
-  }
 }
