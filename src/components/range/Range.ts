@@ -1,26 +1,16 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
-
-const MIN_VALUE = 0
-const MAX_VALUE = 100
-const ORIENTATION = 'vertical'
-const VALUE_1 = 10
-const VALUE_2 = 70
-const STEP = 5
-
+import { Observer } from "@/core/Observer";
+import { Options } from "@/core/interfaces";
 
 export class Range extends SliderComponent {
   static className = 'range'
 
-  constructor($root: JQuery) {
+  constructor($root: JQuery, options: Options) {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      min: MIN_VALUE,
-      max: MAX_VALUE,
-      value1: VALUE_1,
-      value2: VALUE_2,
-      step: STEP
+      ...options
     });
   }
 
@@ -38,7 +28,8 @@ export class Range extends SliderComponent {
       max: this.max,
       value1: this.value1,
       value2: this.value2,
-      step: this.step
+      step: this.step,
+      orientation: this.orientation
     })
   }
 

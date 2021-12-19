@@ -1,14 +1,13 @@
-interface Listener {
-  [x: string]: Function[]
-}
-
 export class Observer {
-  listeners: Listener
+  listeners: {
+    [x: string]: Function[];
+  }
+
   constructor () {
     this.listeners = {}
   }
 // Уведомляем слушателей
-  emit(event: string, ...args: {[x: string]: string}[]) {
+  emit(event: string, ...args: string[]) {
     if (!Array.isArray(this.listeners[event])) {
       return false
     }
@@ -19,12 +18,12 @@ export class Observer {
   }
 
   // Подписываемся на уведомления или добавляем новго слушателя
-  subscribe(event: any, fn: () => void) {
-    this.listeners[event] = this.listeners[event] ||[]
+  subscribe(event: string, fn: Function) {
+    this.listeners[event] = this.listeners[event] || []
     this.listeners[event].push(fn)
     return () => {
       this.listeners[event] =
-        this.listeners[event].filter( listener => listener !== fn)
+        this.listeners[event].filter( (listener: any) => listener !== fn)
     }
   }
 }

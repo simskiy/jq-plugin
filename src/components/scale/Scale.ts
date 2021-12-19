@@ -1,12 +1,14 @@
 import { SliderComponent } from "@core/SliderComponent";
+import { Options } from '@core/interfaces'
 
 export class Scale extends SliderComponent {
   static className = 'scale'
 
-  constructor($root: JQuery) {
+  constructor($root: JQuery, options: Options) {
     super($root, {
       name: 'Scale',
-      listeners: []
+      listeners: [],
+      ...options
     })
   }
 
