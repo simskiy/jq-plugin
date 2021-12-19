@@ -7,6 +7,7 @@ export interface Options {
   step: number
   orientation?: string
   listeners?: string[]
+  // [x: string]: string | number
 }
 
 export interface Slide{
@@ -20,6 +21,16 @@ export interface Slide{
 export interface FillColor extends Slide {
   options: Options
   rangeTrack: { css: (arg0: string, arg1: string) => void }
+}
+
+export interface initData {
+  // min: number
+  // max: number
+  // value1: number
+  // value2: number
+  // step: number
+  // orientation: string
+  [x: string]: string | number
 }
 
 // export class RangeDraw {

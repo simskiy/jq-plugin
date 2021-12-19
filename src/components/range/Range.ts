@@ -9,11 +9,7 @@ export class Range extends SliderComponent {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      min: options.min,
-      max: options.max,
-      value1: options.value1,
-      value2: options.value2,
-      step: options.step
+      ...options
     });
   }
 

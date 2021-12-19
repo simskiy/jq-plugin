@@ -3,16 +3,17 @@ import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
 import { Observer } from '@core/Observer'
 import { Options } from '@core/interfaces'
+import { initData } from '@core/interfaces'
 
 export class Slider {
   $el: JQuery;
-  observer: any;
+  observer: Observer;
   options: Options;
 
-  constructor(selector: JQuery<HTMLElement>, options?: Options) {
+  constructor(selector: JQuery<HTMLElement>, options: initData) {
     this.$el = selector
     this.observer = new Observer()
-    this.options = this.defaultOptions(options)
+    this.options = this.getOptions(options)
   }
   static components = [Values, Range, Scale]
 
@@ -35,14 +36,15 @@ export class Slider {
     // return components
   }
 
-  defaultOptions(opt: Options | undefined): Options {
-    return {
+  getOptions(opt: initData): Options {
+    const outOpt = {
       min: 0,
       max: 100,
-      value1: 20,
-      value2: 70,
+      value1: 10,
+      value2: 80,
       step: 5,
       orientation: 'horizontal'
     }
+    return Object.assign(outOpt, opt)
   }
 }
