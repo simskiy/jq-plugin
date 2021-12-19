@@ -3,14 +3,14 @@ import { EventListener } from "@core/EventListener";
 // import { Options } from "@core/interfaces";
 
 interface Options {
-  name: string,
-  listeners: string[]
-  min?: number
-  max?: number
+  name?: string,
+  listeners?: string[]
+  min: number
+  max: number
   orientation?: string
-  value1?: number
-  value2?:number
-  step?: number
+  value1: number
+  value2:number
+  step: number
 }
 
 export class SliderComponent extends EventListener {
@@ -22,6 +22,7 @@ export class SliderComponent extends EventListener {
   }
 
   prepare() {}
+
   // return template of component
   toHTML () {
     return ''

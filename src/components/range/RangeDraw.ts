@@ -1,4 +1,4 @@
-import {Options, FillColor} from '../../core/interfaces'
+import {Options, FillColor, Slide} from '../../core/interfaces'
 
 export class RangeDraw {
   $root: JQuery<HTMLElement>
@@ -11,11 +11,11 @@ export class RangeDraw {
     this.init()
   }
 
-  private label2: JQuery<HTMLElement> | undefined
-  private label1: JQuery<HTMLElement> | undefined
-  private slider1: JQuery<HTMLElement> | undefined
-  private slider2: JQuery<HTMLElement> | undefined
-  private rangeTrack: JQuery<HTMLElement> | undefined
+  label2: JQuery<HTMLElement> | undefined
+  label1: JQuery<HTMLElement> | undefined
+  slider1: JQuery<HTMLElement> | undefined
+  slider2: JQuery<HTMLElement> | undefined
+  rangeTrack: JQuery<HTMLElement> | undefined
 
   init() {
     this.slider2 = this.$root.children('#slider-2')

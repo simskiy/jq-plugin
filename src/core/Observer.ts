@@ -19,7 +19,7 @@ export class Observer {
   }
 
   // Подписываемся на уведомления или добавляем новго слушателя
-  subscribe(event: any, fn: () => void) {
+  subscribe(event: string, fn: () => void) {
     this.listeners[event] = this.listeners[event] ||[]
     this.listeners[event].push(fn)
     return () => {
