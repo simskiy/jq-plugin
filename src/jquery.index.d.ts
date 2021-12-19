@@ -1,3 +1,3 @@
 interface JQuery {
-  dblSlider: Function
+  dblSlider: () => void
 }

@@ -4,9 +4,10 @@ export interface Options {
   max: number
   value1: number
   value2: number
-  step?: number
-  orientation?: string
+  step: number
+  orientation: string
   listeners?: string[];
+  observer?: any
 }
 
 export interface Slide {
