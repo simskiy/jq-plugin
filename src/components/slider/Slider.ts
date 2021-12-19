@@ -1,22 +1,18 @@
-import {Values} from '@/components/values/Values'
-import {Range} from '@/components/range/Range'
+import {Values} from '@components/values/Values'
+import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import { Observer } from '@/core/Observer';
-
-const MIN_VALUE = 0
-const MAX_VALUE = 100
-const ORIENTATION = 'vertical'
-const VALUE_1 = 10
-const VALUE_2 = 70
-const STEP = 5
+import { Observer } from '@core/Observer'
+import { Options } from '@core/interfaces'
 
 export class Slider {
   $el: JQuery;
-  observer: Observer;
+  observer: any;
+  options: Options;
 
-  constructor(selector: JQuery<HTMLElement>) {
+  constructor(selector: JQuery<HTMLElement>, options?: Options) {
     this.$el = selector
     this.observer = new Observer()
+    this.options = this.defaultOptions(options)
   }
   static components = [Values, Range, Scale]
 
@@ -28,24 +24,25 @@ export class Slider {
    const components = Slider.components.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
-      const component = new Component($el, this.getOptions())
+      const component = new Component($el, this.options)
       $el.append(component.toHTML())
       return component
     })
     components.forEach(component => {
       component.init()
     })
+
     // return components
   }
 
-  getOptions () {
+  defaultOptions(opt: Options | undefined): Options {
     return {
-      min: MIN_VALUE,
-      max: MAX_VALUE,
-      value1: VALUE_1,
-      value2: VALUE_2,
-      step: STEP,
-      orientation: ORIENTATION
+      min: 0,
+      max: 100,
+      value1: 20,
+      value2: 70,
+      step: 5,
+      orientation: 'horizontal'
     }
   }
 }

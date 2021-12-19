@@ -1,7 +1,6 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
-import { Observer } from "@/core/Observer";
-import { Options } from "@/core/interfaces";
+import { Options } from '@core/interfaces'
 
 export class Range extends SliderComponent {
   static className = 'range'
@@ -10,7 +9,11 @@ export class Range extends SliderComponent {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      ...options
+      min: options.min,
+      max: options.max,
+      value1: options.value1,
+      value2: options.value2,
+      step: options.step
     });
   }
 

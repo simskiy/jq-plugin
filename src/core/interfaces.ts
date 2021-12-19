@@ -5,14 +5,16 @@ export interface Options {
   value1: number
   value2: number
   step: number
-  orientation: string
-  listeners?: string[];
-  observer?: any
+  orientation?: string
+  listeners?: string[]
 }
 
-export interface Slide {
-  slider1: {val: (x?: number) => number }
-  slider2: {val: (x?: number) => number }
+export interface Slide{
+  slider1: {val: (x?: number) => number}
+  slider2: {val: (x?: number) => number}
+  label1: {text: (x?:number | string) => string}
+  label2: {text: (x?:number | string) => string}
+  step: number
 }
 
 export interface FillColor extends Slide {
