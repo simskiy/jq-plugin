@@ -10,7 +10,7 @@ export class Slider {
   observer: Observer;
   options: Options;
 
-  constructor(selector: JQuery<HTMLElement>, options: initData) {
+  constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
     this.observer = new Observer()
     this.options = this.getOptions(options)
@@ -40,7 +40,7 @@ export class Slider {
     // return components
   }
 
-  getOptions(opt: initData): Options {
+  getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
     let defOpt = {
       min: 0,
       max: 100,

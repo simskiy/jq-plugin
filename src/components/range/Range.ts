@@ -33,6 +33,13 @@ export class Range extends SliderComponent {
     })
   }
 
+  init () {
+    super.init()
+    this.prepare()
+    this.slider.drawRange()
+    this.observer.emit('thumb:init', this.$root)
+  }
+
   onInput(event: {target: HTMLInputElement}) {
     if (event.target.dataset.input === '1') {
       this.slider.drawThumb_1()
@@ -42,12 +49,5 @@ export class Range extends SliderComponent {
 
     const value = event.target
     this.observer.emit('thumb:input', value)
-  }
-
-  init () {
-    super.init()
-    this.prepare()
-    this.slider.drawRange()
-    this.observer.emit('thumb:init', this.$root)
   }
 }

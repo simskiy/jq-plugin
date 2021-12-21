@@ -1,3 +1,4 @@
+
 interface JQuery {
-  dblSlider: any
+  dblSlider: (options?: {[x: string]: string | number}) => JQuery
 }
