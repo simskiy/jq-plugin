@@ -30,7 +30,7 @@ export class Slider {
         observer: this.observer,
 
       })
-// DEBUG
+
       $el.append(component.toHTML())
       return component
     })

@@ -11,28 +11,29 @@ export class Values extends SliderComponent {
       listeners: [],
       ...options
     })
+
   }
 
   toHTML() {
-    return `  <span class="values__lable values__lable--one">0</span>
-              <span class="values__lable values__lable--two">100</span>
+    return `  <span class="values__lable values__lable--one" data-label="1">0</span>
+              <span class="values__lable values__lable--two" data-label="2">100</span>
             `
   }
 
   init() {
     super.init()
-    this.observer.subscribe('thumb:input', this.setValues)
-    this.observer.subscribe('thumb:init', this.min, this.max)
+    this.label_1 = this.$root.find('[data-label = "1"]')
+    this.label_2 = this.$root.find('[data-label = "2"]')
+    this.observer.subscribe('thumb:input', this.setValues.bind(this))
   }
 
-  setValues($root: JQuery<HTMLElement>, el: HTMLInputElement) {
-    // этот кусок надо оптимизировать (постоянно создается вызов)
-    const label1 = $root.siblings('.values').children('.values__lable--one')
-    const label2 = $root.siblings('.values').children('.values__lable--two')
-    if (el.dataset.input === '1') {
-      label1.text(el.value)
+  setValues(el:HTMLInputElement) {
+    if(el.dataset.input === '1') {
+      this.label_1.text(el.value)
     } else {
-      label2.text(el.value)
+      this.label_2.text(el.value)
     }
   }
+
+
 }

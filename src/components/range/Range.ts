@@ -41,14 +41,13 @@ export class Range extends SliderComponent {
     }
 
     const value = event.target
-    this.observer.emit('thumb:input', this.$root, value)
+    this.observer.emit('thumb:input', value)
   }
 
   init () {
     super.init()
     this.prepare()
     this.slider.drawRange()
-
     this.observer.emit('thumb:init', this.$root)
   }
 }
