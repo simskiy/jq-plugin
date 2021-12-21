@@ -1,3 +1,5 @@
+import { Observer } from "./Observer";
+
 export interface Options {
   name?: string
   min: number
@@ -5,8 +7,13 @@ export interface Options {
   value1: number
   value2: number
   step: number
-  orientation?: string
+  orientation: string
+  observer?: Observer
   listeners?: string[]
+
+  // DEBUG
+  components?: any
+
   // [x: string]: string | number
 }
 

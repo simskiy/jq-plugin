@@ -16,5 +16,5 @@ import {Slider} from '@components/slider/Slider'
 
 
 $('#app').dblSlider({value1: 20})
-$('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
-$('#app2').dblSlider()
+// // $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
+// $('#app2').dblSlider()

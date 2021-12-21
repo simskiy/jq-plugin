@@ -9,15 +9,15 @@ export class Range extends SliderComponent {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      ...options
-    });
+      ...options,
+    })
   }
 
   toHTML() {
     return `
             <div class="range__track"></div>
-            <input type="range" id="slider-1">
-            <input type="range" id="slider-2">
+            <input type="range">
+            <input type="range">
             `
   }
 
@@ -28,21 +28,27 @@ export class Range extends SliderComponent {
       value1: this.value1,
       value2: this.value2,
       step: this.step,
-      orientation: this.orientation
+      orientation: this.orientation,
+      // observer: this.observer
     })
   }
 
   onInput(event: {target: HTMLInputElement}) {
-    if (event.target.id === 'slider-1') {
+    if (event.target.dataset.input === '1') {
       this.slider.drawThumb_1()
     } else {
       this.slider.drawThumb_2()
     }
+
+    const value = event.target
+    this.observer.emit('thumb:input', this.$root, value)
   }
 
   init () {
     super.init()
     this.prepare()
     this.slider.drawRange()
+
+    this.observer.emit('thumb:init', this.$root)
   }
 }

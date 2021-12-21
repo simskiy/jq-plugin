@@ -25,19 +25,23 @@ export class Slider {
    const components = Slider.components.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
-      const component = new Component($el, this.options)
+      const component = new Component($el, {
+        ...this.options,
+        observer: this.observer,
+
+      })
+// DEBUG
       $el.append(component.toHTML())
       return component
     })
     components.forEach(component => {
       component.init()
     })
-
     // return components
   }
 
   getOptions(opt: initData): Options {
-    const outOpt = {
+    let defOpt = {
       min: 0,
       max: 100,
       value1: 10,
@@ -45,6 +49,6 @@ export class Slider {
       step: 5,
       orientation: 'horizontal'
     }
-    return Object.assign(outOpt, opt)
+    return {...defOpt, ...opt}
   }
 }

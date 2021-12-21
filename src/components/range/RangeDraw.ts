@@ -1,4 +1,4 @@
-import {Options, FillColor, Slide} from '../../core/interfaces'
+import {Options, FillColor} from '../../core/interfaces'
 
 export class RangeDraw {
   $root: JQuery<HTMLElement>
@@ -11,17 +11,16 @@ export class RangeDraw {
     this.init()
   }
 
-  label2: JQuery<HTMLElement> | undefined
-  label1: JQuery<HTMLElement> | undefined
   slider1: JQuery<HTMLElement> | undefined
   slider2: JQuery<HTMLElement> | undefined
   rangeTrack: JQuery<HTMLElement> | undefined
 
   init() {
-    this.slider2 = this.$root.children('#slider-2')
-    this.slider1 = this.$root.children('#slider-1')
-    this.label1 = this.$root.prev().children('#label1')
-    this.label2 = this.$root.prev().children('#label2')
+    this.$root.children('input').each( (index: number, value: any) => {
+      $(value).attr('data-input', index + 1)
+    })
+    this.slider2 =this.$root.children('input[data-input = "2"]')
+    this.slider1 = this.$root.children('input[data-input = "1"]')
     this.rangeTrack = this.$root.children('.range__track')
     this.step = this.options.step
   }
@@ -55,7 +54,6 @@ function drawSlide1(this: any) {
   if (this.slider2.val() - this.slider1.val() <= this.step) {
     this.slider1.val(this.slider2.val() - this.step)
   }
-  this.label1.text(this.slider1.val())
   fillColor.bind(this)()
 }
 
@@ -64,7 +62,6 @@ function drawSlide2(this: any) {
     // Реализовал через parseInt, так как не смог разобраться с багом
     this.slider2.val(parseInt(this.slider1.val()) + this.step)
   }
-  this.label2.text(this.slider2[0].value)
   fillColor.bind(this)()
 }
 
