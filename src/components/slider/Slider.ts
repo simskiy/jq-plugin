@@ -3,7 +3,7 @@ import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
 import { Observer } from '@core/Observer'
 import { Options } from '@core/interfaces'
-import { initData } from '@core/interfaces'
+// import { initData } from '@core/interfaces'
 
 export class Slider {
   $el: JQuery;
@@ -26,9 +26,8 @@ export class Slider {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
       const component = new Component($el, {
-        ...this.options,
         observer: this.observer,
-
+        ...this.options,
       })
 
       $el.append(component.toHTML())
@@ -37,10 +36,16 @@ export class Slider {
     components.forEach(component => {
       component.init()
     })
-    // return components
+    return this
+  }
+
+  // получение параметров "на лету"
+  set() {
+    console.log('Hello, Mother Fucker')
   }
 
   getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
+    // дефолтные параметры
     let defOpt = {
       min: 0,
       max: 100,
