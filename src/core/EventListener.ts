@@ -1,6 +1,6 @@
 import { capitalize } from "./utils";
 
-export class EventListener {
+export abstract class EventListener {
   // $root: JQuery;
   listeners: string[];
   [method: string]: any;

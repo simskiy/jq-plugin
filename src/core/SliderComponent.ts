@@ -15,7 +15,7 @@ interface Options {
   observer?: Observer
 }
 
-export class SliderComponent extends EventListener {
+export abstract class SliderComponent extends EventListener {
   constructor($root: JQuery, options: Options) {
     super($root, options.listeners)
     const {name, min, max, orientation, value1, value2, step} = options
@@ -29,6 +29,11 @@ export class SliderComponent extends EventListener {
   // return template of component
   toHTML () {
     return ''
+  }
+
+  set (options?: {[x: string]: string | number}) {
+    this.min = options?.min
+    console.log(this)
   }
 
   init() {

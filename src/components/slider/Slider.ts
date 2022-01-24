@@ -9,20 +9,21 @@ export class Slider {
   $el: JQuery;
   observer: Observer;
   options: Options;
+  components: Scale[] = []
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
     this.observer = new Observer()
     this.options = this.getOptions(options)
   }
-  static components = [Values, Range, Scale]
+  static template = [Values, Range, Scale]
 
   render() {
     this.$el.append('<div class="slider"></div>')
     $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
 
-   const components = Slider.components.map((Component) => {
+   this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
       const component = new Component($el, {
@@ -33,15 +34,16 @@ export class Slider {
       $el.append(component.toHTML())
       return component
     })
-    components.forEach(component => {
+    this.components.forEach(component => {
       component.init()
     })
     return this
   }
 
   // получение параметров "на лету"
-  set() {
-    console.log('Hello, Mother Fucker')
+  set(options?: {[x: string]: string | number}) {
+    console.log(options)
+    this.components[1].set(options)
   }
 
   getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
