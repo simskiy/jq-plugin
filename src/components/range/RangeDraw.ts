@@ -23,6 +23,8 @@ export class RangeDraw {
     this.slider1 = this.$root.children('input[data-input = "1"]')
     this.rangeTrack = this.$root.children('.range__track')
     this.step = this.options.step
+
+    this.drawRange()
   }
 
   drawRange() {

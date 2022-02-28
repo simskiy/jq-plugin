@@ -4,7 +4,6 @@ import 'jquery'
 
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
-
 (function ($) {
   let slider: Slider
   $.fn.dblSlider = function (options) {

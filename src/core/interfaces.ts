@@ -29,3 +29,10 @@ export interface FillColor extends Slide {
   options: Options
   rangeTrack: { css: (arg0: string, arg1: string) => void }
 }
+
+export type sliderDraw = (
+  this: any,
+  value1: number | undefined,
+  value2: number | undefined,
+  step: number | undefined
+) => void
