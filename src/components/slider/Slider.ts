@@ -6,10 +6,10 @@ import { Options } from '@core/interfaces'
 // import { initData } from '@core/interfaces'
 
 export class Slider {
-  $el: JQuery;
-  observer: Observer;
-  options: Options;
-  components: Scale[] = []
+  $el: JQuery
+  observer: Observer
+  options: Options
+  components: Range[] | Values[] | Scale[] = []
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
@@ -41,9 +41,16 @@ export class Slider {
   }
 
   // получение параметров "на лету"
-  set(options?: {[x: string]: string | number}) {
-    console.log(options)
-    this.components[1].set(options)
+  set(options: { min?: number | undefined; max?: number | undefined; value_1?: number | undefined; value_2?: number | undefined; step?: number | undefined } | undefined) {
+    let opt = {...this.options, ...options}
+    console.log(this.components[1].options.value1 = 25)
+    console.log(this.components[0].options.value1)
+    // console.log(this.components.findIndex(item => item.name === 'Range'))
+    // console.log(this.components[1].slider.drawRange(opt.min, 50))
+  }
+
+  test() {
+
   }
 
   getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {

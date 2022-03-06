@@ -22,6 +22,7 @@ export abstract class SliderComponent extends EventListener {
     Object.assign(this, {name, min, max, orientation, value1, value2, step})
     this.observer = options.observer
     this.prepare()
+    this.options = options
   }
 
   prepare() {}
@@ -31,9 +32,7 @@ export abstract class SliderComponent extends EventListener {
     return ''
   }
 
-  set (options?: {[x: string]: string | number}) {
-    this.min = options?.min
-    console.log(this)
+  set () {
   }
 
   init() {

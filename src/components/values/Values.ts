@@ -12,7 +12,7 @@ export class Values extends SliderComponent {
       listeners: [],
       ...options
     })
-
+    this.options = options
   }
 
   toHTML() {

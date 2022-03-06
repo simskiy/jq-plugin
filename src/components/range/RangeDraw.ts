@@ -3,6 +3,11 @@ import {Options, FillColor} from '../../core/interfaces'
 export class RangeDraw {
   $root: JQuery<HTMLElement>
   options: Options
+  slider1: JQuery<HTMLElement> | undefined
+  slider2: JQuery<HTMLElement> | undefined
+  rangeTrack: JQuery<HTMLElement> | undefined
+  value_1: number | undefined
+  value_2: number | undefined
   step: number | undefined
 
   constructor($root: JQuery<HTMLElement>, options: Options) {
@@ -10,10 +15,6 @@ export class RangeDraw {
     this.options = options
     this.init()
   }
-
-  slider1: JQuery<HTMLElement> | undefined
-  slider2: JQuery<HTMLElement> | undefined
-  rangeTrack: JQuery<HTMLElement> | undefined
 
   init() {
     this.$root.children('input').each( (index: number, value: any) => {
@@ -23,13 +24,18 @@ export class RangeDraw {
     this.slider1 = this.$root.children('input[data-input = "1"]')
     this.rangeTrack = this.$root.children('.range__track')
     this.step = this.options.step
+    this.value_1 = Number(this.slider2.val())
+    this.value_2 = Number(this.slider2.val())
 
     this.drawRange()
   }
 
-  drawRange() {
-    this.slider1?.attr(setAttrRanges.bind(this)(this.options.value1))
-    this.slider2?.attr(setAttrRanges.bind(this)(this.options.value2))
+  drawRange(
+    value_1: number = this.options.value1,
+    value_2: number = this.options.value2,
+    ) {
+    this.slider1?.attr(setAttrRanges.bind(this)(value_1))
+    this.slider2?.attr(setAttrRanges.bind(this)(value_2))
     drawSlide1.bind(this)()
     drawSlide2.bind(this)()
   }
@@ -52,7 +58,7 @@ function setAttrRanges(this: RangeDraw, currentValue: number) {
   }
 }
 
-function drawSlide1(this: any) {
+function drawSlide1(this:any) {
   if (this.slider2.val() - this.slider1.val() <= this.step) {
     this.slider1.val(this.slider2.val() - this.step)
   }
