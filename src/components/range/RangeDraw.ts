@@ -1,16 +1,22 @@
-import {Options, FillColor} from '../../core/interfaces'
+import { FillColor } from "@/core/interfaces"
 
 export class RangeDraw {
   $root: JQuery<HTMLElement>
-  options: Options
   slider1: JQuery<HTMLElement> | undefined
   slider2: JQuery<HTMLElement> | undefined
   rangeTrack: JQuery<HTMLElement> | undefined
   value_1: number | undefined
   value_2: number | undefined
   step: number | undefined
+  options: {
+    min: number
+    max: number
+    step: number
+    value1: number
+    value2: number
+  }
 
-  constructor($root: JQuery<HTMLElement>, options: Options) {
+  constructor($root: JQuery<HTMLElement>, options: { min: number; max: number; step: number; value1: number; value2: number }) {
     this.$root = $root
     this.options = options
     this.init()

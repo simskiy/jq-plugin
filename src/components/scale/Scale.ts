@@ -8,7 +8,6 @@ export class Scale extends SliderComponent {
     super($root, {
       name: 'Scale',
       listeners: [],
-      ...options
     })
   }
 

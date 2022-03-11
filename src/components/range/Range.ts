@@ -5,11 +5,10 @@ import { Options } from '@core/interfaces'
 export class Range extends SliderComponent {
   static className = 'range'
 
-  constructor($root: JQuery, options: Options) {
+  constructor($root: JQuery) {
     super($root, {
       name: 'Range',
       listeners: ['input'],
-      ...options,
     })
   }
 
@@ -22,22 +21,14 @@ export class Range extends SliderComponent {
   }
 
   prepare() {
-    this.slider = new RangeDraw(this.$root, {
-      min: this.min,
-      max: this.max,
-      value1: this.value1,
-      value2: this.value2,
-      step: this.step,
-      orientation: this.orientation,
-      // observer: this.observer
-    })
+    // this.slider = new RangeDraw(this.$root, {})
   }
 
   init () {
     super.init()
     this.prepare()
     // this.slider.drawRange()
-    this.observer.emit('thumb:init', this.$root)
+    // this.observer.emit('thumb:init', this.$root)
   }
 
   onInput(event: {target: HTMLInputElement}) {

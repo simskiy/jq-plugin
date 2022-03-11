@@ -10,9 +10,7 @@ export class Values extends SliderComponent {
     super($root, {
       name: 'Values',
       listeners: [],
-      ...options
     })
-    this.options = options
   }
 
   toHTML() {
@@ -31,7 +29,7 @@ export class Values extends SliderComponent {
     this.value.initValues()
     this.label_1 = this.$root.find('[data-label = "1"]')
     this.label_2 = this.$root.find('[data-label = "2"]')
-    this.observer.subscribe('thumb:input', this.setValues.bind(this))
+    // this.observer.subscribe('thumb:input', this.setValues.bind(this))
   }
 
   setValues(el:HTMLInputElement) {

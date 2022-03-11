@@ -2,19 +2,18 @@ import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
 import { Observer } from '@core/Observer'
-import { Options } from '@core/interfaces'
 // import { initData } from '@core/interfaces'
-
+import {setOptions} from './setOptions'
 export class Slider {
   $el: JQuery
   observer: Observer
-  options: Options
   components: Range[] | Values[] | Scale[] = []
+  options: { [x: string]: string | number } | undefined
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
     this.observer = new Observer()
-    this.options = this.getOptions(options)
+    this.options = options
   }
   static template = [Values, Range, Scale]
 
@@ -26,10 +25,7 @@ export class Slider {
    this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
-      const component = new Component($el, {
-        observer: this.observer,
-        ...this.options,
-      })
+      const component = new Component($el, {observer: this.observer})
 
       $el.append(component.toHTML())
       return component
@@ -37,32 +33,27 @@ export class Slider {
     this.components.forEach(component => {
       component.init()
     })
+    console.log(this.components[0])
     return this
   }
 
   // получение параметров "на лету"
-  set(options: { min?: number | undefined; max?: number | undefined; value_1?: number | undefined; value_2?: number | undefined; step?: number | undefined } | undefined) {
-    let opt = {...this.options, ...options}
-    console.log(this.components[1].options.value1 = 25)
-    console.log(this.components[0].options.value1)
-    // console.log(this.components.findIndex(item => item.name === 'Range'))
-    // console.log(this.components[1].slider.drawRange(opt.min, 50))
+  set(options: any) {
+    setOptions(options)
+    console.log(this.components[0])
+    console.log(this.components[0].min)
   }
 
-  test() {
-
-  }
-
-  getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
-    // дефолтные параметры
-    let defOpt = {
-      min: 0,
-      max: 100,
-      value1: 10,
-      value2: 80,
-      step: 5,
-      orientation: 'horizontal'
-    }
-    return {...defOpt, ...opt}
-  }
+  // getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
+  //   // дефолтные параметры
+  //   let defOpt = {
+  //     min: 0,
+  //     max: 100,
+  //     value1: 10,
+  //     value2: 80,
+  //     step: 5,
+  //     orientation: 'horizontal'
+  //   }
+  //   return {...defOpt, ...opt}
+  // }
 }
