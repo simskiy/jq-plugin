@@ -1,92 +1,41 @@
-import { FillColor } from "@/core/interfaces"
+import { Range } from "./Range"
+import { setOptions } from "@/core/utils"
+import { SliderComponent } from "@/core/SliderComponent"
 
 export class RangeDraw {
-  $root: JQuery<HTMLElement>
-  slider1: JQuery<HTMLElement> | undefined
-  slider2: JQuery<HTMLElement> | undefined
-  rangeTrack: JQuery<HTMLElement> | undefined
-  value_1: number | undefined
-  value_2: number | undefined
-  step: number | undefined
-  options: {
-    min: number
-    max: number
-    step: number
-    value1: number
-    value2: number
-  }
+  $root: Range
 
-  constructor($root: JQuery<HTMLElement>, options: { min: number; max: number; step: number; value1: number; value2: number }) {
+  constructor($root: Range) {
     this.$root = $root
-    this.options = options
-    this.init()
   }
 
-  init() {
-    this.$root.children('input').each( (index: number, value: any) => {
-      $(value).attr('data-input', index + 1)
-    })
-    this.slider2 =this.$root.children('input[data-input = "2"]')
-    this.slider1 = this.$root.children('input[data-input = "1"]')
-    this.rangeTrack = this.$root.children('.range__track')
-    this.step = this.options.step
-    this.value_1 = Number(this.slider2.val())
-    this.value_2 = Number(this.slider2.val())
+  drawRange(options?: {}) {
+    setOptions(options)
+    this.$root.slide1.value = this.$root.value1
+    this.$root.slide2.value = this.$root.value2
+    this.$root.slide1.step = this.$root.step
+    this.$root.slide2.step = this.$root.step
+    
 
-    this.drawRange()
+    // if (this.$root.slide2.value - this.$root.slide1.value <= this.$root.step) {
+    //   this.$root.slider1.value = this.$root.slide2.value - this.$root.step
+    //   console.log(`value1: ${this.$root.slider1.value}, value2: ${this.$root.slider2.value}, step: ${this.$root.step}`)
+    // }
+
+    // if (this.$root.slide2.value - this.$root.slide1.value <= this.$root.step) {
+    //   // Реализовал через parseInt, так как не смог разобраться с багом
+    //   this.$root.slide2.value = parseInt(this.$root.slide1.value) + this.$root.step
+    // }
+
+    let percent1: number = this.$root.slide1.value / this.$root.max * 100
+    let percent2: number = this.$root.slide2.value / this.$root.max * 100
+
+    this.$root.track.style.background = `linear-gradient(
+                                            to right,
+                                            #dadae5 ${percent1}%,
+                                            #3264fe ${percent1}%,
+                                            #3264fe ${percent2}%,
+                                            #dadae5 ${percent2}%)`
+
   }
-
-  drawRange(
-    value_1: number = this.options.value1,
-    value_2: number = this.options.value2,
-    ) {
-    this.slider1?.attr(setAttrRanges.bind(this)(value_1))
-    this.slider2?.attr(setAttrRanges.bind(this)(value_2))
-    drawSlide1.bind(this)()
-    drawSlide2.bind(this)()
-  }
-
-  drawThumb_1() {
-    drawSlide1.bind(this)()
-  }
-
-  drawThumb_2() {
-    drawSlide2.bind(this)()
-  }
-}
-
-function setAttrRanges(this: RangeDraw, currentValue: number) {
-  return {
-    value: currentValue,
-    min: this.options.min,
-    max: this.options.max,
-    step: this.options.step
-  }
-}
-
-function drawSlide1(this:any) {
-  if (this.slider2.val() - this.slider1.val() <= this.step) {
-    this.slider1.val(this.slider2.val() - this.step)
-  }
-  fillColor.bind(this)()
-}
-
-function drawSlide2(this: any) {
-  if (this.slider2.val() - this.slider1.val() <= this.step) {
-    // Реализовал через parseInt, так как не смог разобраться с багом
-    this.slider2.val(parseInt(this.slider1.val()) + this.step)
-  }
-  fillColor.bind(this)()
-}
-
-function fillColor(this: FillColor) {
-  let percent1: number = this.slider1.val() / this.options.max * 100
-  let percent2: number = this.slider2.val() / this.options.max * 100
-
-  this.rangeTrack.css('background', `linear-gradient(
-    to right,
-    #dadae5 ${percent1}%,
-    #3264fe ${percent1}%,
-    #3264fe ${percent2}%,
-    #dadae5 ${percent2}%`)
 }

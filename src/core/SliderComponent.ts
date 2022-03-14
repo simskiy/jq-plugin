@@ -6,23 +6,15 @@ import { Observer } from '@core/Observer'
 interface Options {
   name?: string,
   listeners: string[]
-  // min?: number
-  // max?: number
-  // orientation?: string
-  // value1: number
-  // value2:number
-  // step: number
   observer?: Observer
 }
 
 export abstract class SliderComponent extends EventListener {
   constructor($root: JQuery, options: Options) {
     super($root, options.listeners)
-    // const {name, min, max, orientation, value1, value2, step} = options
-    // Object.assign(this, {name, min, max, orientation, value1, value2, step})
-    this.observer = options.observer
-    this.prepare()
+    // this.observer = options.observer
     this.options = options
+    this.prepare()
   }
 
   prepare() {}

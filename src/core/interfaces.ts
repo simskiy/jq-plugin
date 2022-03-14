@@ -25,8 +25,3 @@ export interface Slide {
   label2: {text: (x?:number | string) => string}
   step: number
 }
-
-export interface FillColor extends Slide {
-  options: { max: number; }
-  rangeTrack: { css: (arg0: string, arg1: string) => void }
-}

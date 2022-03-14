@@ -21,8 +21,8 @@ import {Slider} from '@components/slider/Slider'
   }
 })(jQuery)
 
-$('#app').dblSlider({value1: 20})
-$('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
+// $('#app').dblSlider({value1: 20})
+// $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
 let slider = $('#app2').dblSlider()
 $('button').on('click', () => {
   slider.set({min: 30})

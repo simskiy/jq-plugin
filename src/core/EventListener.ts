@@ -2,7 +2,7 @@ import { capitalize } from "./utils";
 
 export abstract class EventListener {
   // $root: JQuery;
-  listeners: string[];
+  // listeners: string[];
   [method: string]: any;
 
   constructor($root: JQuery, listeners: string[]) {
@@ -14,24 +14,24 @@ export abstract class EventListener {
   }
 
   initListeners() {
-    if (this.listeners) {
-      this.listeners.forEach(listener => {
+    // if (this.listeners) {
+      this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)
         if (!this[method])
           throw new Error(`Метод ${method} не реализован в компоненте ${this.name}`)
         this[method] = this[method].bind(this)
         this.$root.on(listener, this[method])
       })
-    }
+    // }
   }
 
   removeListeners() {
-    if (this.listeners) {
-      this.listeners.forEach(listener => {
+    // if (this.listeners) {
+      this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)
         this.$root.off(listener, this[method])
       })
-    }
+    // }
   }
 }
 

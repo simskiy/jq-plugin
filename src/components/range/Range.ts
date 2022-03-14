@@ -1,6 +1,9 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
-import { Options } from '@core/interfaces'
+import { Observer } from "@/core/Observer";
+import { Slider } from "../slider/Slider";
+// import { Options } from '@core/interfaces'
+
 
 export class Range extends SliderComponent {
   static className = 'range'
@@ -10,35 +13,49 @@ export class Range extends SliderComponent {
       name: 'Range',
       listeners: ['input'],
     })
+    // this.$root = $root
+    this.track = document.createElement('div')
+    this.slide1 = document.createElement('input')
+    this.slide2 = document.createElement('input')
   }
 
   toHTML() {
-    return `
-            <div class="range__track"></div>
-            <input type="range">
-            <input type="range">
-            `
+    return ''
   }
 
   prepare() {
-    // this.slider = new RangeDraw(this.$root, {})
+    this.slider = new RangeDraw(this)
   }
 
   init () {
     super.init()
-    this.prepare()
-    // this.slider.drawRange()
+    this.track.className = 'range__track'
+    this.slide1.type = 'range'
+    this.slide1.setAttribute('data-input', '1')
+    this.slide2.type = 'range'
+    this.slide2.setAttribute('data-input', '2')
+    this.$root.append(this.track, this.slide1, this.slide2)
+
+    this.slider.drawRange()
     // this.observer.emit('thumb:init', this.$root)
   }
 
   onInput(event: {target: HTMLInputElement}) {
+
     if (event.target.dataset.input === '1') {
-      this.slider.drawThumb_1()
+      // SliderComponent.prototype.value1 = Number(event.target.value)
+      this.slider.drawRange({value1: event.target.value})
     } else {
-      this.slider.drawThumb_2()
+      // SliderComponent.prototype.value2 = event.target.value
+      this.slider.drawRange({value2: event.target.value})
     }
 
-    const value = event.target
-    this.observer.emit('thumb:input', value)
+  //   const value = event.target
+  //   this.observer.emit('thumb:input', value)
   }
+
+  private getOpt() {
+
+  }
+
 }
