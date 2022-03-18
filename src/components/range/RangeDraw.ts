@@ -4,20 +4,19 @@ import { SliderComponent } from "@/core/SliderComponent"
 
 export class RangeDraw {
   $root: Range
+  static prop = ['min', 'max', 'step']
   constructor($root: Range) {
     this.$root = $root
   }
 
   init(options?: {}) {
     setOptions(options)
+    RangeDraw.prop.map( (item) => {
+      this.$root.slide1[item] = this.$root[item]
+      this.$root.slide2[item] = this.$root[item]
+    })
     this.$root.slide1.value = this.$root.value1
-    this.$root.slide1.min = this.$root.min
-    this.$root.slide1.max = this.$root.max
-    this.$root.slide1.step = this.$root.step
     this.$root.slide2.value = this.$root.value2
-    this.$root.slide2.min = this.$root.min
-    this.$root.slide2.max = this.$root.max
-    this.$root.slide2.step = this.$root.step
     this.drawTrack(undefined)
   }
 
@@ -25,12 +24,13 @@ export class RangeDraw {
     // this.$root.slide1 - html element
     // this.$root - object
 
-    this.$root.value1 = +this.$root.slide1.value
-    this.$root.value2 = +this.$root.slide2.value
+    SliderComponent.prototype.value1 = +this.$root.slide1.value
+    SliderComponent.prototype.value2 = +this.$root.slide2.value
     this.drawTrack(target?.dataset.input)
   }
 
   private drawTrack(data: string | undefined) {
+
     let percent1: number = this.$root.slide1.value / this.$root.max * 100
     let percent2: number = this.$root.slide2.value / this.$root.max * 100
 

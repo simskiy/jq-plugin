@@ -2,8 +2,6 @@ import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
 import { Observer } from "@/core/Observer";
 import { Slider } from "../slider/Slider";
-// import { Options } from '@core/interfaces'
-
 
 export class Range extends SliderComponent {
   static className = 'range'
@@ -13,7 +11,6 @@ export class Range extends SliderComponent {
       name: 'Range',
       listeners: ['input'],
     })
-    // this.$root = $root
     this.track = document.createElement('div')
     this.slide1 = document.createElement('input')
     this.slide2 = document.createElement('input')
