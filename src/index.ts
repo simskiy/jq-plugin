@@ -25,5 +25,5 @@ import {Slider} from '@components/slider/Slider'
 // $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
 let slider = $('#app2').dblSlider({min: 30})
 $('button').on('click', () => {
-  slider.set({min: 30})
+  slider.set({value1: 30, value2: 50})
 })

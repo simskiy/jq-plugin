@@ -38,6 +38,7 @@ export class Slider {
   // получение параметров "на лету"
   set(options: {} | undefined) {
     setOptions(options)
-    console.log(this.components)
+    this.components[1].slider.init(options)
+    console.log(this.components[1].value1)
   }
 }

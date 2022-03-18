@@ -42,8 +42,4 @@ export class Range extends SliderComponent {
   //   this.observer.emit('thumb:input', value)
   }
 
-  private getOpt() {
-
-  }
-
 }

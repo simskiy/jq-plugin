@@ -3,8 +3,8 @@ interface JQuery {
   set: (options?: {
     min?: number,
     max?: number,
-    value_1?: number,
-    value_2?: number,
+    value1?: number,
+    value2?: number,
     step?: number,
   }) => JQuery
 }
