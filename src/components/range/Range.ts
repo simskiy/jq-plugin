@@ -36,21 +36,12 @@ export class Range extends SliderComponent {
     this.slide2.setAttribute('data-input', '2')
     this.$root.append(this.track, this.slide1, this.slide2)
 
-    this.slider.drawRange()
+    this.slider.init()
     // this.observer.emit('thumb:init', this.$root)
   }
 
   onInput(event: {target: HTMLInputElement}) {
-
-    if (event.target.dataset.input === '1') {
-      // SliderComponent.prototype.value1 = Number(event.target.value)
-      this.slider.drawRange({value1: event.target.value})
-    } else {
-      // SliderComponent.prototype.value2 = event.target.value
-      this.slider.drawRange({value2: event.target.value})
-    }
-
-  //   const value = event.target
+    this.slider.drawRange(event.target)
   //   this.observer.emit('thumb:input', value)
   }
 
