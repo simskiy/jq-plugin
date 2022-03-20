@@ -1,78 +1,57 @@
-import {Options, FillColor} from '../../core/interfaces'
+import { Range } from "./Range"
+import { setOptions } from "@/core/utils"
+import { SliderComponent } from "@/core/SliderComponent"
 
-export class RangeDraw {
-  $root: JQuery<HTMLElement>
-  options: Options
-  step: number | undefined
-
-  constructor($root: JQuery<HTMLElement>, options: Options) {
+export interface IRangeDraw {
+  $root: Range
+  init(): void
+  drawRange(target: HTMLElement): void
+}
+export class RangeDraw implements IRangeDraw{
+  $root: Range
+  static prop = ['min', 'max', 'step']
+  constructor($root: Range) {
     this.$root = $root
-    this.options = options
-    this.init()
   }
 
-  slider1: JQuery<HTMLElement> | undefined
-  slider2: JQuery<HTMLElement> | undefined
-  rangeTrack: JQuery<HTMLElement> | undefined
-
-  init() {
-    this.$root.children('input').each( (index: number, value: any) => {
-      $(value).attr('data-input', index + 1)
+  init(options?: {}) {
+    setOptions(options)
+    RangeDraw.prop.map( (item) => {
+      this.$root.slide1[item] = this.$root[item]
+      this.$root.slide2[item] = this.$root[item]
     })
-    this.slider2 =this.$root.children('input[data-input = "2"]')
-    this.slider1 = this.$root.children('input[data-input = "1"]')
-    this.rangeTrack = this.$root.children('.range__track')
-    this.step = this.options.step
+    this.$root.slide1.value = this.$root.value1
+    this.$root.slide2.value = this.$root.value2
+    this.drawTrack(undefined)
   }
 
-  drawRange() {
-    this.slider1?.attr(setAttrRanges.bind(this)(this.options.value1))
-    this.slider2?.attr(setAttrRanges.bind(this)(this.options.value2))
-    drawSlide1.bind(this)()
-    drawSlide2.bind(this)()
+  drawRange(target: HTMLElement | undefined) {
+    // this.$root.slide1 - html element
+    // this.$root - object
+
+    SliderComponent.prototype.value1 = +this.$root.slide1.value
+    SliderComponent.prototype.value2 = +this.$root.slide2.value
+    this.drawTrack(target?.dataset.input)
   }
 
-  drawThumb_1() {
-    drawSlide1.bind(this)()
+  private drawTrack(data: string | undefined) {
+
+    let percent1: number = this.$root.slide1.value / this.$root.max * 100
+    let percent2: number = this.$root.slide2.value / this.$root.max * 100
+
+    if (this.$root.value2 - this.$root.value1 < this.$root.step && data) {
+      this.stopThumb(data)
+    } else {
+      this.$root.track.style.background = `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
+    }
   }
 
-  drawThumb_2() {
-    drawSlide2.bind(this)()
+  private stopThumb(data: string) {
+    switch (data) {
+      case '1': this.$root.slide1.value = this.$root.value2 - this.$root.step; break;
+      case '2': this.$root.slide2.value = this.$root.value1 + this.$root.step; break;
+      default: throw new Error('Invalid data-input')
+    }
   }
-}
 
-function setAttrRanges(this: RangeDraw, currentValue: number) {
-  return {
-    value: currentValue,
-    min: this.options.min,
-    max: this.options.max,
-    step: this.options.step
-  }
-}
-
-function drawSlide1(this: any) {
-  if (this.slider2.val() - this.slider1.val() <= this.step) {
-    this.slider1.val(this.slider2.val() - this.step)
-  }
-  fillColor.bind(this)()
-}
-
-function drawSlide2(this: any) {
-  if (this.slider2.val() - this.slider1.val() <= this.step) {
-    // Реализовал через parseInt, так как не смог разобраться с багом
-    this.slider2.val(parseInt(this.slider1.val()) + this.step)
-  }
-  fillColor.bind(this)()
-}
-
-function fillColor(this: FillColor) {
-  let percent1: number = this.slider1.val() / this.options.max * 100
-  let percent2: number = this.slider2.val() / this.options.max * 100
-
-  this.rangeTrack.css('background', `linear-gradient(
-    to right,
-    #dadae5 ${percent1}%,
-    #3264fe ${percent1}%,
-    #3264fe ${percent2}%,
-    #dadae5 ${percent2}%`)
 }

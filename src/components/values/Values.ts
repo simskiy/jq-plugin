@@ -1,18 +1,18 @@
 import { Options } from "@/core/interfaces";
-import { SliderComponent } from "@core/SliderComponent";
+import { ISliderComponent, SliderComponent } from "@core/SliderComponent";
 import { ValueDraw } from "./ValueDraw";
 
 
-export class Values extends SliderComponent {
+export interface IValues extends ISliderComponent {}
+
+export class Values extends SliderComponent implements IValues {
   static className = 'values'
 
   constructor($root: JQuery, options: Options) {
     super($root, {
       name: 'Values',
       listeners: [],
-      ...options
     })
-
   }
 
   toHTML() {
@@ -31,7 +31,7 @@ export class Values extends SliderComponent {
     this.value.initValues()
     this.label_1 = this.$root.find('[data-label = "1"]')
     this.label_2 = this.$root.find('[data-label = "2"]')
-    this.observer.subscribe('thumb:input', this.setValues.bind(this))
+    // this.observer.subscribe('thumb:input', this.setValues.bind(this))
   }
 
   setValues(el:HTMLInputElement) {

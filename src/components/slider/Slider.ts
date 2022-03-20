@@ -1,20 +1,29 @@
 import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import { Observer } from '@core/Observer'
-import { Options } from '@core/interfaces'
-// import { initData } from '@core/interfaces'
+import { ISliderComponent } from '@/core/SliderComponent'
+import {Observer, IObserver} from '@core/Observer'
+import {setOptions} from '@core/utils'
+
+interface IComponents {
+}
+interface IComponentsConstructor {
+  toHTML(): void
+  prepare(): void
+  init(): void
+  new (el: JQuery, observer: IObserver): ISliderComponent
+}
 
 export class Slider {
-  $el: JQuery;
-  observer: Observer;
-  options: Options;
-  components: Scale[] = []
+  $el: JQuery
+  observer: Observer
+  components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
+  options: { [x: string]: string | number } | undefined
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
     this.observer = new Observer()
-    this.options = this.getOptions(options)
+    this.options = options
   }
   static template = [Values, Range, Scale]
 
@@ -22,15 +31,12 @@ export class Slider {
     this.$el.append('<div class="slider"></div>')
     $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
+    setOptions()
 
    this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
-      const component = new Component($el, {
-        observer: this.observer,
-        ...this.options,
-      })
-
+      const component = new Component($el, {observer: this.observer})
       $el.append(component.toHTML())
       return component
     })
@@ -41,21 +47,7 @@ export class Slider {
   }
 
   // получение параметров "на лету"
-  set(options?: {[x: string]: string | number}) {
-    console.log(options)
-    this.components[1].set(options)
-  }
-
-  getOptions(opt: { [x: string]: string | number } | Options | undefined): Options {
-    // дефолтные параметры
-    let defOpt = {
-      min: 0,
-      max: 100,
-      value1: 10,
-      value2: 80,
-      step: 5,
-      orientation: 'horizontal'
-    }
-    return {...defOpt, ...opt}
+  set(options: {}) {
+    enum Comp {}
   }
 }

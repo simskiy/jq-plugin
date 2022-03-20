@@ -4,7 +4,6 @@ import 'jquery'
 
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
-
 (function ($) {
   let slider: Slider
   $.fn.dblSlider = function (options) {
@@ -12,7 +11,7 @@ import {Slider} from '@components/slider/Slider'
     slider.render()
     return this
   }
-  $.fn.set = function (options) {
+  $.fn.set = function (options = {}) {
     if (this.hasClass('dbl_slider-container')) {
       slider.set(options)
     } else {
@@ -22,9 +21,9 @@ import {Slider} from '@components/slider/Slider'
   }
 })(jQuery)
 
-$('#app').dblSlider({value1: 20})
-$('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
-let slider = $('#app2').dblSlider()
+// $('#app').dblSlider({value1: 20})
+// $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
+let slider = $('#app2').dblSlider({min: 30})
 $('button').on('click', () => {
-  slider.set({min: 30})
+  slider.set({value1: 30, value2: 50})
 })

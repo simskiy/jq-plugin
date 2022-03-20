@@ -1,14 +1,15 @@
 import { Observer } from "./Observer";
 
 export interface Options {
+  // max: number;
   name?: string
-  min: number
-  max: number
-  value1: number
-  value2: number
-  step: number
-  orientation: string
-  observer?: Observer
+  // min: number
+  // max: number
+  // value1: number
+  // value2: number
+  // step: number
+  // orientation: string
+  observer: Observer
   listeners?: string[]
 
   // DEBUG
@@ -23,9 +24,4 @@ export interface Slide {
   label1: {text: (x?:number | string) => string}
   label2: {text: (x?:number | string) => string}
   step: number
-}
-
-export interface FillColor extends Slide {
-  options: Options
-  rangeTrack: { css: (arg0: string, arg1: string) => void }
 }
