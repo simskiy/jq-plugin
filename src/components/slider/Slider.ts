@@ -1,12 +1,23 @@
 import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import {Observer} from '@core/Observer'
+import { ISliderComponent } from '@/core/SliderComponent'
+import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
+
+interface IComponents {
+}
+interface IComponentsConstructor {
+  toHTML(): void
+  prepare(): void
+  init(): void
+  new (el: JQuery, observer: IObserver): ISliderComponent
+}
+
 export class Slider {
   $el: JQuery
   observer: Observer
-  components: Range[] | Values[] | Scale[] = []
+  components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
   options: { [x: string]: string | number } | undefined
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
@@ -36,9 +47,7 @@ export class Slider {
   }
 
   // получение параметров "на лету"
-  set(options: {} | undefined) {
-    setOptions(options)
-    this.components[1].slider.init(options)
-    console.log(this.components[1].value1)
+  set(options: {}) {
+    enum Comp {}
   }
 }

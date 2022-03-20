@@ -11,7 +11,7 @@ import {Slider} from '@components/slider/Slider'
     slider.render()
     return this
   }
-  $.fn.set = function (options) {
+  $.fn.set = function (options = {}) {
     if (this.hasClass('dbl_slider-container')) {
       slider.set(options)
     } else {

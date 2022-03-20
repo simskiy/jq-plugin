@@ -1,11 +1,15 @@
 import { capitalize } from "./utils";
 
-export abstract class EventListener {
-  // $root: JQuery;
-  // listeners: string[];
-  [method: string]: any;
+export interface IEventListener {
+  $root: JQuery
+  listeners: string[]
+}
+export abstract class EventListener implements IEventListener{
+  public $root: JQuery<HTMLElement>;
+  public listeners: string[];
+  [method: string]: any; /* Тоже какая-то хуйня. Исправить! */
 
-  constructor($root: JQuery, listeners: string[]) {
+  protected constructor($root: JQuery, listeners: string[]) {
     if(!$root) {
       throw new Error('no $root provided for EventListener')
     }
@@ -13,7 +17,7 @@ export abstract class EventListener {
     this.listeners = listeners
   }
 
-  initListeners() {
+  protected initListeners() {
     // if (this.listeners) {
       this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)
@@ -25,7 +29,7 @@ export abstract class EventListener {
     // }
   }
 
-  removeListeners() {
+  protected removeListeners() {
     // if (this.listeners) {
       this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)

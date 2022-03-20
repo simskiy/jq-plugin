@@ -1,7 +1,11 @@
 interface Listener {
   [x: string]: Function[]
 }
-
+export interface IObserver {
+  listeners: Listener
+  emit(): boolean
+  subscribe(): string[]
+}
 export class Observer {
   listeners: Listener
   constructor () {

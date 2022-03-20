@@ -1,9 +1,11 @@
 import { Options } from "@/core/interfaces";
-import { SliderComponent } from "@core/SliderComponent";
+import { ISliderComponent, SliderComponent } from "@core/SliderComponent";
 import { ValueDraw } from "./ValueDraw";
 
 
-export class Values extends SliderComponent {
+export interface IValues extends ISliderComponent {}
+
+export class Values extends SliderComponent implements IValues {
   static className = 'values'
 
   constructor($root: JQuery, options: Options) {

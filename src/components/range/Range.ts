@@ -1,11 +1,14 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
+import { ISliderComponent } from "@core/SliderComponent";
 import { Observer } from "@/core/Observer";
 import { Slider } from "../slider/Slider";
+import { IRangeDraw } from "./RangeDraw";
 
-export class Range extends SliderComponent {
-  static className = 'range'
-
+export interface IRange extends ISliderComponent {
+  slider: IRangeDraw
+}
+export class Range extends SliderComponent implements IRange {
   constructor($root: JQuery) {
     super($root, {
       name: 'Range',
@@ -15,13 +18,15 @@ export class Range extends SliderComponent {
     this.slide1 = document.createElement('input')
     this.slide2 = document.createElement('input')
   }
+  static className = 'range'
+  slider = new RangeDraw(this)
+
 
   toHTML() {
     return ''
   }
 
   prepare() {
-    this.slider = new RangeDraw(this)
   }
 
   init () {

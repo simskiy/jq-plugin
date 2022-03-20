@@ -2,7 +2,12 @@ import { Range } from "./Range"
 import { setOptions } from "@/core/utils"
 import { SliderComponent } from "@/core/SliderComponent"
 
-export class RangeDraw {
+export interface IRangeDraw {
+  $root: Range
+  init(): void
+  drawRange(target: HTMLElement): void
+}
+export class RangeDraw implements IRangeDraw{
   $root: Range
   static prop = ['min', 'max', 'step']
   constructor($root: Range) {
