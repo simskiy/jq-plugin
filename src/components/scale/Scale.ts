@@ -1,5 +1,6 @@
 import { ISliderComponent, SliderComponent } from "@core/SliderComponent";
 import { Options } from '@core/interfaces'
+import { ScaleDraw } from "./ScaleDraw";
 
 export interface IScale extends ISliderComponent {}
 
@@ -12,22 +13,16 @@ export class Scale extends SliderComponent implements IScale {
       listeners: [],
     })
   }
+  scale = new ScaleDraw()
 
   toHTML() {
-    return `
-            <ul class="scale__list">
-              <li class="scale__label">0</li>
-              <li class="scale__label">10</li>
-              <li class="scale__label">20</li>
-              <li class="scale__label">30</li>
-              <li class="scale__label">40</li>
-              <li class="scale__label">50</li>
-              <li class="scale__label">60</li>
-              <li class="scale__label">70</li>
-              <li class="scale__label">80</li>
-              <li class="scale__label">90</li>
-              <li class="scale__label">100</li>
-            </ul>
-           `
+    return ''
+  }
+
+  init() {
+    super.init()
+    const min = SliderComponent.prototype.min
+    const max = SliderComponent.prototype.max
+    this.$root.append(this.scale.init(min, max))
   }
 }

@@ -39,6 +39,7 @@ export class Range extends SliderComponent implements IRange {
     this.$root.append(this.track, this.slide1, this.slide2)
 
     this.slider.init()
+
     // this.observer.emit('thumb:init', this.$root)
   }
 
