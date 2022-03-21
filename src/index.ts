@@ -4,6 +4,7 @@ import 'jquery'
 
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
+import { SliderComponent } from './core/SliderComponent'
 (function ($) {
   let slider: Slider
   $.fn.dblSlider = function (options) {
@@ -25,5 +26,6 @@ import {Slider} from '@components/slider/Slider'
 // $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
 let slider = $('#app2').dblSlider({min: 30})
 $('button').on('click', () => {
-  slider.set({value1: 30, value2: 50})
+  slider.set({value1: 30, value2: 50, max: 200})
+  console.log(SliderComponent.prototype)
 })

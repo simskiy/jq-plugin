@@ -11,6 +11,7 @@ export class Scale extends SliderComponent implements IScale {
     super($root, {
       name: 'Scale',
       listeners: [],
+      ...options
     })
   }
   scale = new ScaleDraw()

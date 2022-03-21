@@ -12,6 +12,7 @@ export class Values extends SliderComponent implements IValues {
     super($root, {
       name: 'Values',
       listeners: [],
+      ...options
     })
   }
 

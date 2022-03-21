@@ -11,14 +11,16 @@ interface Options {
 }
 
 export interface ISliderComponent extends IEventListener {
+  slider?: any
   toHTML(): string
   init(): void
+  // observer: Observer
 }
 
 export abstract class SliderComponent extends EventListener implements ISliderComponent {
   constructor($root: JQuery, options: Options) {
     super($root, options.listeners)
-    // this.observer = options.observer
+    this.observer = options.observer
     this.options = options
     this.prepare()
   }
