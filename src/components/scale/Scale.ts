@@ -21,6 +21,8 @@ export class Scale extends SliderComponent implements IScale {
 
   init() {
     super.init()
-    this.$root.append(this.scale.init(50, 63))
+    const min = SliderComponent.prototype.min
+    const max = SliderComponent.prototype.max
+    this.$root.append(this.scale.init(min, max))
   }
 }
