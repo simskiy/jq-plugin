@@ -22,11 +22,13 @@ export class RangeDraw implements IRangeDraw{
     this.slide1 = document.createElement('input')
     this.slide2 = document.createElement('input')
 
-    this.value1 = SliderComponent.prototype.value1
-    this.value2 = SliderComponent.prototype.value2
-    this.min = SliderComponent.prototype.min
-    this.max = SliderComponent.prototype.max
-    this.step = SliderComponent.prototype.step
+    this.value1 = 0
+    this.value2 = 100
+    this.min = 0
+    this.max = 100
+    this.step = 1
+
+    this.initValues()
   }
 
   init(options?: {}) {
@@ -49,6 +51,20 @@ export class RangeDraw implements IRangeDraw{
       this.value1 = +this.slide1.value
       this.value2 = +this.slide2.value
     }
+  }
+
+  initValues() {
+    this.value1 = SliderComponent.prototype.value1
+    this.value2 = SliderComponent.prototype.value2
+    this.min = SliderComponent.prototype.min
+    this.max = SliderComponent.prototype.max
+    this.step = SliderComponent.prototype.step
+  }
+
+  getSliderProperty() {
+    this.initValues()
+    this.fillSliderProperty()
+    this.drawTrack()
   }
 
   private stopThumb(data: string) {

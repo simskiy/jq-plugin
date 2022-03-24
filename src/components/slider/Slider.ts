@@ -1,7 +1,7 @@
 import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import { ISliderComponent } from '@/core/SliderComponent'
+import { ISliderComponent, SliderComponent } from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
 
@@ -48,7 +48,14 @@ export class Slider {
   }
 
   // получение параметров "на лету"
-  set(options: {}) {
+  set(options: {
+    min?: number
+    max?: number
+    step?: number
+    value1?: number
+    value2?: number
+  }) {
+    setOptions(options)
     this.observer.emit('range:set', options)
   }
 }

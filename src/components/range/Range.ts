@@ -3,6 +3,7 @@ import { RangeDraw } from "./RangeDraw";
 import { ISliderComponent } from "@core/SliderComponent";
 import { IRangeDraw } from "./RangeDraw";
 import { Options } from "@/core/interfaces";
+import { setOptions } from "@/core/utils";
 
 export interface IRange extends ISliderComponent {
   slider: IRangeDraw
@@ -30,7 +31,9 @@ export class Range extends SliderComponent {
     super.init()
     this.$root.append(this.slider.init())
     this.observer.subscribe('range:input', (data: string) => this.slider.drawTrack(data))
-    this.observer.subscribe('range:set', (options: any) => this.slider.drawTrack(options))
+    this.observer.subscribe('range:set', (options: any) => {
+      this.slider.getSliderProperty()
+    })
   }
 
   onInput(event: {target: HTMLInputElement}) {
