@@ -1,25 +1,23 @@
 import { SliderComponent } from "@core/SliderComponent";
 import { RangeDraw } from "./RangeDraw";
 import { ISliderComponent } from "@core/SliderComponent";
-import { Observer } from "@/core/Observer";
-import { Slider } from "../slider/Slider";
 import { IRangeDraw } from "./RangeDraw";
+import { Options } from "@/core/interfaces";
+import { setOptions } from "@/core/utils";
 
 export interface IRange extends ISliderComponent {
   slider: IRangeDraw
 }
-export class Range extends SliderComponent implements IRange {
-  constructor($root: JQuery) {
+export class Range extends SliderComponent {
+  constructor($root: JQuery, options: Options) {
     super($root, {
       name: 'Range',
       listeners: ['input'],
+      ...options
     })
-    this.track = document.createElement('div')
-    this.slide1 = document.createElement('input')
-    this.slide2 = document.createElement('input')
   }
   static className = 'range'
-  slider = new RangeDraw(this)
+  slider = new RangeDraw()
 
 
   toHTML() {
@@ -31,21 +29,20 @@ export class Range extends SliderComponent implements IRange {
 
   init () {
     super.init()
-    this.track.className = 'range__track'
-    this.slide1.type = 'range'
-    this.slide1.setAttribute('data-input', '1')
-    this.slide2.type = 'range'
-    this.slide2.setAttribute('data-input', '2')
-    this.$root.append(this.track, this.slide1, this.slide2)
-
-    this.slider.init()
-
-    // this.observer.emit('thumb:init', this.$root)
+    this.$root.append(this.slider.init())
+    this.observer.subscribe('range:input', (data: string) => this.slider.drawTrack(data))
+    this.observer.subscribe('range:set', (options: any) => {
+      this.slider.getSliderProperty()
+    })
   }
 
   onInput(event: {target: HTMLInputElement}) {
-    this.slider.drawRange(event.target)
-  //   this.observer.emit('thumb:input', value)
+    this.observer.emit('thumb:input', event.target)
+    switch (event.target.dataset.input) {
+      case '1': { SliderComponent.prototype.value1 = +event.target.value
+        this.observer.emit('range:input', event.target.dataset.input)}
+      case '2': { SliderComponent.prototype.value2 = +event.target.value
+        this.observer.emit('range:input', event.target.dataset.input)}
+    }
   }
-
 }

@@ -1,7 +1,7 @@
 import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import { ISliderComponent } from '@/core/SliderComponent'
+import { ISliderComponent, SliderComponent } from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
 
@@ -16,14 +16,14 @@ interface IComponentsConstructor {
 
 export class Slider {
   $el: JQuery
-  observer: Observer
+  observer: any
   components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
   options: { [x: string]: string | number } | undefined
 
   constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
     this.$el = selector
-    this.observer = new Observer()
     this.options = options
+    this.observer = new Observer()
   }
   static template = [Values, Range, Scale]
 
@@ -38,6 +38,7 @@ export class Slider {
       const $el = this.$el.find(`.${Component.className}`)
       const component = new Component($el, {observer: this.observer})
       $el.append(component.toHTML())
+
       return component
     })
     this.components.forEach(component => {
@@ -47,7 +48,14 @@ export class Slider {
   }
 
   // получение параметров "на лету"
-  set(options: {}) {
-    enum Comp {}
+  set(options: {
+    min?: number
+    max?: number
+    step?: number
+    value1?: number
+    value2?: number
+  }) {
+    setOptions(options)
+    this.observer.emit('range:set', options)
   }
 }
