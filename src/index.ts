@@ -27,5 +27,4 @@ import { SliderComponent } from './core/SliderComponent'
 let slider = $('#app2').dblSlider({min: 30})
 $('button').on('click', () => {
   slider.set({value1: 30, value2: 50, max: 200})
-  console.log(SliderComponent.prototype)
 })

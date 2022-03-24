@@ -29,13 +29,12 @@ export class Range extends SliderComponent {
   init () {
     super.init()
     this.$root.append(this.slider.init())
-    // this.observer.emit('thumb:init', this.$root)
     this.observer.subscribe('range:input', (data: string) => this.slider.drawTrack(data))
-    this.observer.subscribe('range:set', (options: any) => this.slider.init(options))
+    this.observer.subscribe('range:set', (options: any) => this.slider.drawTrack(options))
   }
 
   onInput(event: {target: HTMLInputElement}) {
-  //   this.observer.emit('thumb:input', value)
+    this.observer.emit('thumb:input', event.target)
     switch (event.target.dataset.input) {
       case '1': { SliderComponent.prototype.value1 = +event.target.value
         this.observer.emit('range:input', event.target.dataset.input)}

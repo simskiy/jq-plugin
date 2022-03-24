@@ -10,6 +10,7 @@ export class RangeDraw implements IRangeDraw{
   track: HTMLElement
   slide2: HTMLInputElement
   slide1: HTMLInputElement
+
   value1: number
   value2: number
   min: number
@@ -20,6 +21,7 @@ export class RangeDraw implements IRangeDraw{
     this.track = document.createElement('div')
     this.slide1 = document.createElement('input')
     this.slide2 = document.createElement('input')
+
     this.value1 = SliderComponent.prototype.value1
     this.value2 = SliderComponent.prototype.value2
     this.min = SliderComponent.prototype.min
@@ -29,23 +31,8 @@ export class RangeDraw implements IRangeDraw{
 
   init(options?: {}) {
     setOptions(options)
-
-
     this.track.className = 'range__track'
-    this.slide1.setAttribute('data-input', '1')
-    this.slide1.type = 'range'
-    this.slide1.min = this.min.toString()
-    this.slide1.max = this.max.toString()
-    this.slide1.step = this.step.toString()
-    this.slide1.value = this.value1.toString()
-
-    this.slide2.setAttribute('data-input', '2')
-    this.slide2.type = 'range'
-    this.slide2.min = this.min.toString()
-    this.slide2.max = this.max.toString()
-    this.slide2.step = this.step.toString()
-    this.slide2.value = this.value2.toString()
-
+    this.fillSliderProperty()
     this.drawTrack()
 
     return [this.track, this.slide1, this.slide2]
@@ -59,6 +46,8 @@ export class RangeDraw implements IRangeDraw{
       this.stopThumb(data)
     } else {
       this.track.style.background = `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
+      this.value1 = +this.slide1.value
+      this.value2 = +this.slide2.value
     }
   }
 
@@ -70,4 +59,16 @@ export class RangeDraw implements IRangeDraw{
     }
   }
 
+  private fillSliderProperty (this: RangeDraw) {
+    for (let slide of [this.slide1, this.slide2]) {
+      slide.min = this.min.toString()
+      slide.max = this.max.toString()
+      slide.step = this.step.toString()
+      slide.type = 'range'
+      slide.value = slide === this.slide1 ? this.value1.toString() : this.value2.toString()
+      slide.dataset.input = slide === this.slide1? '1': '2'
+    }
+  }
 }
+
+
