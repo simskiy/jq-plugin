@@ -53,7 +53,7 @@ export class RangeDraw implements IRangeDraw{
     }
   }
 
-  initValues() {
+  private initValues() {
     this.value1 = SliderComponent.prototype.value1
     this.value2 = SliderComponent.prototype.value2
     this.min = SliderComponent.prototype.min
@@ -61,7 +61,7 @@ export class RangeDraw implements IRangeDraw{
     this.step = SliderComponent.prototype.step
   }
 
-  getSliderProperty() {
+  setRangeProperty() {
     this.initValues()
     this.fillSliderProperty()
     this.drawTrack()
@@ -69,8 +69,14 @@ export class RangeDraw implements IRangeDraw{
 
   private stopThumb(data: string) {
     switch (data) {
-      case '1': this.slide1.value = (+this.slide2.value - this.step).toString(); break;
-      case '2': this.slide2.value = (+this.slide1.value + this.step).toString(); break;
+      case '1': {
+        this.slide1.value = (+this.slide2.value - this.step).toString()
+        SliderComponent.prototype.value1 = this.value1
+        break }
+      case '2': {
+        this.slide2.value = (+this.slide1.value + this.step).toString()
+        SliderComponent.prototype.value2 = this.value2
+        break }
       default: throw new Error('Invalid data-input')
     }
   }

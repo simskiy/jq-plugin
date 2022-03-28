@@ -1,26 +1,27 @@
+import { SliderComponent } from "@/core/SliderComponent"
+import { Slider } from "../slider/Slider"
 export class ValueDraw {
-  $root: JQuery<HTMLElement>;
-  min: number;
-  max: number;
-  label_1: JQuery<HTMLElement> | undefined;
-  label_2: JQuery<HTMLElement> | undefined;
-  constructor($root: JQuery, options: number[]) {
-    this.$root = $root
-    this.min = options[0]
-    this.max = options[1]
-    this.init()
+  label1: HTMLElement
+  label2: HTMLElement
+  constructor() {
+    this.label1 = document.createElement('span')
+    this.label2 = document.createElement('span')
   }
 
   init() {
-    this.$root.children('span').each( (index: number, value: any) => {
-      $(value).attr('data-label', index + 1)
-    })
-    this.label_1 = this.$root.children('span[data-label = "1"]')
-    this.label_2 = this.$root.children('span[data-label = "2"]')
+    for (let label of [this.label1, this.label2]) {
+      label.classList.add('values__lable')
+    }
+    this.label1.textContent = SliderComponent.prototype.value1
+    this.label2.textContent = SliderComponent.prototype.value2
+    return [this.label1, this.label2]
   }
 
-  initValues() {
-    this.label_1?.text(this.min)
-    this.label_2?.text(this.max)
+  setValues(el: HTMLInputElement) {
+    if (el.dataset.input === '1') {
+      this.label1.textContent = Number(el.value) >= Number(this.label2.innerText) ? SliderComponent.prototype.value1 : el.value
+    } else {
+      this.label2.textContent = Number(el.value) <= Number(this.label1.innerText) ? SliderComponent.prototype.value2 : el.value
+    }
   }
 }
