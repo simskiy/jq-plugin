@@ -56,9 +56,14 @@ export class Slider {
     value2?: number
   }) {
     setOptions(options)
-     if ('min' || 'max' in options) {
-       this.observer.emit('range:set', options)
+    if ( ('min' || 'max') in options) {
+      
+      // this.observer.emit('scale:set', null)
      }
 
+    if ( ('value1' || 'value2') in options) {
+      this.observer.emit('range:set', options)
+      this.observer.emit('values:set', options.min, options.max)
+    }
   }
 }
