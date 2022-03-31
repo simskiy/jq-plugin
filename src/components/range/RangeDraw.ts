@@ -67,6 +67,13 @@ export class RangeDraw implements IRangeDraw{
     this.drawTrack()
   }
 
+  offMultiRange(state: boolean) {
+    if (!state) {
+      this.value2 = SliderComponent.prototype.max
+      this.setRangeProperty()
+    }
+  }
+
   private stopThumb(data: string) {
     switch (data) {
       case '1': {

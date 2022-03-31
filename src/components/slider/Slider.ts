@@ -1,7 +1,7 @@
 import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
-import { ISliderComponent, SliderComponent } from '@/core/SliderComponent'
+import {ISliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
 
@@ -20,7 +20,7 @@ export class Slider {
   components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
   options: { [x: string]: string | number } | undefined
 
-  constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number } | undefined) {
+  constructor(selector: JQuery<HTMLElement>, options: { [x: string]: string | number} | undefined) {
     this.$el = selector
     this.options = options
     this.observer = new Observer()
@@ -54,16 +54,10 @@ export class Slider {
     step?: number
     value1?: number
     value2?: number
+    // multirange?: boolean
   }) {
     setOptions(options)
-    if ( ('min' || 'max') in options) {
-      
-      // this.observer.emit('scale:set', null)
-     }
-
-    if ( ('value1' || 'value2') in options) {
-      this.observer.emit('range:set', options)
-      this.observer.emit('values:set', options.min, options.max)
-    }
+    this.observer.emit('slider:set', options)
+    // if (!options.multirange) this.observer.emit('multirange:off', options.multirange)
   }
 }

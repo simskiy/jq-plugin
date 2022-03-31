@@ -13,7 +13,7 @@ export interface Options {
   listeners?: string[]
 
   // DEBUG
-  components?: any
+  // components?: any
 
   // [x: string]: string | number
 }
