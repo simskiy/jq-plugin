@@ -1,24 +1,43 @@
+import { SliderComponent } from "@/core/SliderComponent"
+import { Slider } from "../slider/Slider"
+
 interface IScaleDraw {
   init(min: number, max: number): HTMLElement
 }
 
 export class ScaleDraw implements IScaleDraw {
+  ul: HTMLElement
+  min: number
+  max: number
+
   constructor() {
+    this.ul = document.createElement('ul')
+    this.min = SliderComponent.prototype.min
+    this.max = SliderComponent.prototype.max
   }
 
-  init(min: number, max: number) {
-    let rullerDivision = rounded((max - min) / 10)
+  init() {
+    if (this.ul.hasChildNodes()) {
+      this.ul.remove()
+      this.ul = document.createElement('ul')
+      this.min = SliderComponent.prototype.min
+      this.max = SliderComponent.prototype.max
+    }
+    this.ul.className = 'scale__list'
+    return this.draw()
+  }
 
-    const ul = document.createElement('ul')
-    ul.className = 'scale__list'
+  draw() {
+    let rullerDivision = rounded((this.max - this.min) / 10)
+
     for (let i = 0; i < 11; i++) {
       let li = document.createElement('li')
       li.className = 'scale__label'
-      li.textContent = rounded(min).toString()
-      ul.append(li)
-      min += rullerDivision
+      li.textContent = rounded(this.min).toString()
+      this.ul?.append(li)
+      this.min += rullerDivision
     }
-    return ul
+    return this.ul
   }
 }
 

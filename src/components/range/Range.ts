@@ -30,9 +30,8 @@ export class Range extends SliderComponent {
     super.init()
     this.$root.append(this.slider.init())
     this.observer.subscribe('range:input', (data: string) => this.slider.drawTrack(data))
-    this.observer.subscribe('range:set', () => {
-      this.slider.setRangeProperty()
-    })
+    this.observer.subscribe('slider:set', () => this.slider.setRangeProperty())
+    // this.observer.subscribe('multirange:off', () => this.slider.offMultiRange())
   }
 
   onInput(event: {target: HTMLInputElement}) {

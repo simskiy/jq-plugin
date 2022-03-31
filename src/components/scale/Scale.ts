@@ -2,6 +2,7 @@ import { ISliderComponent, SliderComponent } from "@core/SliderComponent";
 import { Options } from '@core/interfaces'
 import { ScaleDraw } from "./ScaleDraw";
 
+
 export interface IScale extends ISliderComponent {}
 
 export class Scale extends SliderComponent implements IScale {
@@ -22,8 +23,9 @@ export class Scale extends SliderComponent implements IScale {
 
   init() {
     super.init()
-    const min = SliderComponent.prototype.min
-    const max = SliderComponent.prototype.max
-    this.$root.append(this.scale.init(min, max))
+    const scale = this.scale.init()
+    this.$root.append(scale)
+    // this.observer.subscribe('scale:set', () => this.scale.init())
+    this.observer.subscribe('slider:set', () => this.$root.append(this.scale.init()))
   }
 }

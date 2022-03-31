@@ -12,12 +12,16 @@ export class ValueDraw {
     for (let label of [this.label1, this.label2]) {
       label.classList.add('values__lable')
     }
-    this.label1.textContent = SliderComponent.prototype.value1
-    this.label2.textContent = SliderComponent.prototype.value2
+    this.setValues()
     return [this.label1, this.label2]
   }
 
-  setValues(el: HTMLInputElement) {
+  setValues() {
+    this.label1.textContent = SliderComponent.prototype.value1
+    this.label2.textContent = SliderComponent.prototype.value2
+  }
+
+  changeValues(el: HTMLInputElement) {
     if (el.dataset.input === '1') {
       this.label1.textContent = Number(el.value) >= Number(this.label2.innerText) ? SliderComponent.prototype.value1 : el.value
     } else {

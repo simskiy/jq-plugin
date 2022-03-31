@@ -41,8 +41,8 @@ export class RangeDraw implements IRangeDraw{
   }
 
    drawTrack(data?: string) {
-    let percent1: number = Number(this.slide1.value) / this.max * 100
-    let percent2: number = Number(this.slide2.value) / this.max * 100
+    let percent1: number = (Number(this.slide1.value) - this.min) / (this.max - this.min) * 100
+    let percent2: number = (Number(this.slide2.value) - this.min) / (this.max - this.min) * 100
 
     if (Number(this.slide2.value) - Number(this.slide1.value) < this.step && data) {
       this.stopThumb(data)
@@ -65,6 +65,13 @@ export class RangeDraw implements IRangeDraw{
     this.initValues()
     this.fillSliderProperty()
     this.drawTrack()
+  }
+
+  offMultiRange(state: boolean) {
+    if (!state) {
+      this.value2 = SliderComponent.prototype.max
+      this.setRangeProperty()
+    }
   }
 
   private stopThumb(data: string) {
