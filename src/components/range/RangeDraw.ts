@@ -56,12 +56,10 @@ export class RangeDraw implements IRangeDraw{
 
   drawBackgroundRange(multirange: boolean) {
     let percent1: number = (Number(this.slide1.value) - this.min) / (this.max - this.min) * 100
-    // let percent2: number = (Number(this.slide2.value) - this.min) / (this.max - this.min) * 100
     let percent2: number = 0
 
     if (!multirange) {
       percent2 = +this.slide2.value / this.max * 100
-      console.log(percent2)
     } else {
       percent2 = (Number(this.slide2.value) - this.min) / (this.max - this.min) * 100
     }

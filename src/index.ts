@@ -33,6 +33,5 @@ $('#mr').on('change', function () {
     slider.set({multirange: true})
   } else {
     slider.set({multirange: false})
-    console.log(SliderComponent.prototype)
   }
 })
