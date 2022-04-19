@@ -5,9 +5,11 @@ import 'jquery'
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
 import { SliderComponent } from './core/SliderComponent'
+import { SliderOptions } from './core/interfaces'
+
 (function ($) {
   let slider: Slider
-  $.fn.dblSlider = function (options) {
+  $.fn.dblSlider = function (options = {}) {
     slider = new Slider(this, options)
     slider.render()
     return this
@@ -24,5 +26,13 @@ import { SliderComponent } from './core/SliderComponent'
 
 // $('#app').dblSlider({value1: 20})
 // $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
-let slider = $('#app2').dblSlider()
-$('button').on('click', () => slider.set({ value1: 30, max: 200}))
+let slider = $('#app2').dblSlider({value1: 20, value2: 50})
+// $('#mr').on('change', () => slider.set({ value1: 30, max: 200, multirange: false}))
+$('#mr').on('change', function () {
+  if ($('#mr').prop('checked')) {
+    slider.set({multirange: true})
+  } else {
+    slider.set({multirange: false})
+    console.log(SliderComponent.prototype)
+  }
+})

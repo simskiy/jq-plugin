@@ -18,6 +18,16 @@ export interface Options {
   // [x: string]: string | number
 }
 
+export interface SliderOptions {
+  min?: number
+  max?: number
+  value1?: number
+  value2?: number
+  step?: number
+  orientation?: string
+  multirange?: boolean
+}
+
 export interface Slide {
   slider1: {val: (x?: number) => number}
   slider2: {val: (x?: number) => number}
