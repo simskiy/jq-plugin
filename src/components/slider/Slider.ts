@@ -22,16 +22,19 @@ export class Slider {
   components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
   // options: { [x: string]: string | number } | undefined
   options: SliderOptions
+  slider: HTMLDivElement
 
   constructor(selector: JQuery<HTMLElement>, options: SliderOptions) {
     this.$el = selector
     this.options = options
     this.observer = new Observer()
+    this.slider = document.createElement('div')
   }
   static template = [Values, Range, Scale]
 
   render() {
-    this.$el.append('<div class="slider"></div>')
+    this.slider.classList.add('slider')
+    this.$el.append(this.slider)
     $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
     setOptions(this.options)
@@ -63,8 +66,6 @@ export class Slider {
     setOptions(options)
     this.observer.emit('slider:set', options)
     this.setOrientation(SliderComponent.prototype.orientation)
-    // if (!options.multirange) this.observer.emit('multirange:off', options.multirange)
-    // if (!options.multirange) this.observer.emit('slider:set', options)
   }
 
   private setOrientation(value?: string) {
