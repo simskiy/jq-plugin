@@ -2,6 +2,7 @@ import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
 import {ISliderComponent} from '@/core/SliderComponent'
+import {SliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
 import {SliderOptions} from '@core/interfaces'
@@ -46,6 +47,7 @@ export class Slider {
     this.components.forEach(component => {
       component.init()
     })
+    this.setOrientation(SliderComponent.prototype.orientation)
     return this
   }
 
@@ -60,7 +62,25 @@ export class Slider {
   }) {
     setOptions(options)
     this.observer.emit('slider:set', options)
+    this.setOrientation(SliderComponent.prototype.orientation)
     // if (!options.multirange) this.observer.emit('multirange:off', options.multirange)
     // if (!options.multirange) this.observer.emit('slider:set', options)
+  }
+
+  private setOrientation(value?: string) {
+    const vertical = 'dbl_slider-container--vertical'
+    const horizontal = 'dbl_slider-container--horizontal'
+    switch (value) {
+      case 'horizontal': {console.log('horizontal')
+        this.$el.addClass(horizontal)
+        this.$el.removeClass(vertical)}
+        break
+      case 'vertical': {console.log('vertical')
+        this.$el.addClass(vertical)
+        this.$el.removeClass('horizontal')}
+        break
+      default: throw new Error('Invalid value of orientation slider')
+    }
+
   }
 }

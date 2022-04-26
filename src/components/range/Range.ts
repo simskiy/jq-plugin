@@ -18,7 +18,6 @@ export class Range extends SliderComponent {
   static className = 'range'
   slider = new RangeDraw(this.$root)
 
-
   toHTML() {
     return ''
   }

@@ -30,8 +30,8 @@ let slider = $('#app2').dblSlider({value1: 20, value2: 50})
 // $('#mr').on('change', () => slider.set({ value1: 30, max: 200, multirange: false}))
 $('#mr').on('change', function () {
   if ($('#mr').prop('checked')) {
-    slider.set({multirange: true})
+    slider.set({multirange: true, orientation: 'horizontal'})
   } else {
-    slider.set({multirange: false})
+    slider.set({multirange: false, orientation: 'vertical'})
   }
 })
