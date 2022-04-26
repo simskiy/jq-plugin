@@ -71,16 +71,15 @@ export class Slider {
     const vertical = 'dbl_slider-container--vertical'
     const horizontal = 'dbl_slider-container--horizontal'
     switch (value) {
-      case 'horizontal': {console.log('horizontal')
+      case 'horizontal': {
         this.$el.addClass(horizontal)
         this.$el.removeClass(vertical)}
         break
-      case 'vertical': {console.log('vertical')
+      case 'vertical': {
         this.$el.addClass(vertical)
-        this.$el.removeClass('horizontal')}
+        this.$el.removeClass(horizontal)}
         break
       default: throw new Error('Invalid value of orientation slider')
     }
-
   }
 }
