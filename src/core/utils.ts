@@ -25,14 +25,16 @@ export function setOptions(options?: Options):void {
 }
 
 function getOptions(opt?: Options) {
+    const slider = SliderComponent.prototype
     // дефолтные параметры
     let defOpt = {
-      min: 0,
-      max: 100,
-      value1: 10,
-      value2: 80,
-      step: 5,
-      orientation: 'horizontal'
+      min: slider.min || 0,
+      max: slider.max || 100,
+      value1: slider.value1 || 0,
+      value2: slider.value2 || 80,
+      step: slider.step || 5,
+      orientation: slider.orientation || 'horizontal',
+      multirange: slider.multirange || true
     }
     return {...defOpt, ...opt}
   }

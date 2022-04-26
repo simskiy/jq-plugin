@@ -17,6 +17,11 @@ export class ValueDraw {
   }
 
   setValues() {
+    if(SliderComponent.prototype.multirange) {
+      this.label1.style.display = 'inline'
+    } else {
+      this.label1.style.display = 'none'
+    }
     this.label1.textContent = SliderComponent.prototype.value1
     this.label2.textContent = SliderComponent.prototype.value2
   }
