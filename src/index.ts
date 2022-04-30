@@ -25,8 +25,8 @@ import { SliderOptions } from './core/interfaces'
 })(jQuery)
 
 // $('#app').dblSlider({value1: 20})
-// $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
-let slider = $('#app2').dblSlider({value1: 20, value2: 50})
+$('#app1').dblSlider({min: -60, max: 60, value2: 0, value1: 0,  multirange: false})
+let slider = $('#app2').dblSlider({min: 0, max: 100, value1: 20, value2: 50})
 // $('#mr').on('change', () => slider.set({ value1: 30, max: 200, multirange: false}))
 $('#mr').on('change', function () {
   if ($('#mr').prop('checked')) {

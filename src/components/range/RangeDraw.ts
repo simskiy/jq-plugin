@@ -36,7 +36,6 @@ export class RangeDraw implements IRangeDraw{
   }
 
   init(options?: {}) {
-    // setOptions(options)
     this.track.className = 'range__track'
     this.fillSliderProperty()
     this.drawTracks()
@@ -103,7 +102,6 @@ export class RangeDraw implements IRangeDraw{
         } else {
           this.slide1.value = this.min.toString()
         }
-        // SliderComponent.prototype.value1 = this.value1
         this.fillValuesSliderComponent({value1: this.value1})
         break }
       case '2': {
@@ -112,7 +110,6 @@ export class RangeDraw implements IRangeDraw{
         } else {
           this.slide2.value = this.slide1.value
         }
-        // SliderComponent.prototype.value2 = this.value2
         this.fillValuesSliderComponent({value2: this.value2})
         break }
       default: throw new Error('Invalid data-input')
@@ -137,14 +134,12 @@ export class RangeDraw implements IRangeDraw{
     step?: number
     value1?: number
     value2?: number
-    // orientation?: string
   } = {}) {
       SliderComponent.prototype.min = values.min || this.min
       SliderComponent.prototype.max = values.max || this.max
       SliderComponent.prototype.step = values.step || this.step
       SliderComponent.prototype.value1 = values.value1 || this.value1
       SliderComponent.prototype.value2 = values.value2 || this.value2
-      // SliderComponent.prototype.orientation = values.orientation || this.orientation
     }
   }
 

@@ -7,20 +7,10 @@ import {Observer, IObserver} from '@core/Observer'
 import {setOptions} from '@core/utils'
 import {SliderOptions} from '@core/interfaces'
 
-interface IComponents {
-}
-interface IComponentsConstructor {
-  toHTML(): void
-  prepare(): void
-  init(): void
-  new (el: JQuery, observer: IObserver): ISliderComponent
-}
-
 export class Slider {
   $el: JQuery
   observer: any
   components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
-  // options: { [x: string]: string | number } | undefined
   options: SliderOptions
   slider: HTMLDivElement
 
@@ -38,6 +28,8 @@ export class Slider {
     $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
     setOptions(this.options)
+
+    console.log(SliderComponent.prototype)
 
    this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
