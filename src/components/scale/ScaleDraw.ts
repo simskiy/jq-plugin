@@ -1,5 +1,6 @@
 import { SliderComponent } from "@/core/SliderComponent"
-import { Slider } from "../slider/Slider"
+import { SliderParams } from "@/core/SliderParams"
+// import { Slider } from "../slider/Slider"
 
 interface IScaleDraw {
   init(min: number, max: number): HTMLElement
@@ -7,21 +8,23 @@ interface IScaleDraw {
 
 export class ScaleDraw implements IScaleDraw {
   ul: HTMLElement
+  params: SliderParams
   min: number
   max: number
 
-  constructor() {
+  constructor(params: SliderParams) {
     this.ul = document.createElement('ul')
-    this.min = SliderComponent.prototype.min
-    this.max = SliderComponent.prototype.max
+    this.params = params
+    this.min = this.params.min
+    this.max = this.params.max
   }
 
   init() {
     if (this.ul.hasChildNodes()) {
       this.ul.remove()
       this.ul = document.createElement('ul')
-      this.min = SliderComponent.prototype.min
-      this.max = SliderComponent.prototype.max
+      // this.min = SliderComponent.prototype.min
+      // this.max = SliderComponent.prototype.max
     }
     this.ul.className = 'scale__list'
     return this.draw()

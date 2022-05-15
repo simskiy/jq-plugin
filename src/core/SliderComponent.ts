@@ -2,12 +2,14 @@
 import { EventListener } from "@core/EventListener";
 import { IEventListener } from "@core/EventListener";
 import { Observer } from '@core/Observer'
+import { SliderParams } from "./SliderParams";
 // import { Options } from "@core/interfaces";
 
 interface Options {
   name?: string,
   listeners: string[]
   observer?: Observer
+  params?: SliderParams
 }
 
 export interface ISliderComponent extends IEventListener {
@@ -17,10 +19,11 @@ export interface ISliderComponent extends IEventListener {
   // observer: Observer
 }
 
-export abstract class SliderComponent extends EventListener implements ISliderComponent {
+export class SliderComponent extends EventListener implements ISliderComponent {
   constructor($root: JQuery, options: Options) {
     super($root, options.listeners)
     this.observer = options.observer
+    this.params = options.params
     this.options = options
     this.prepare()
   }

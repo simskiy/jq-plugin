@@ -4,20 +4,22 @@ import {Scale} from '@components/scale/Scale'
 import {ISliderComponent} from '@/core/SliderComponent'
 import {SliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
-import {setOptions} from '@core/utils'
 import {SliderOptions} from '@core/interfaces'
+import { SliderParams } from '@/core/SliderParams'
 
+import { Params } from '@core/interfaces'
 export class Slider {
   $el: JQuery
-  observer: any
+  observer: Observer
   components: ISliderComponent[] = [] /*что блять я здесь такое написал?!!! Полная хуйня!!! */
-  options: SliderOptions
   slider: HTMLDivElement
+  params: SliderParams
 
-  constructor(selector: JQuery<HTMLElement>, options: SliderOptions) {
+
+  constructor(selector: JQuery<HTMLElement>, options?: Params) {
     this.$el = selector
-    this.options = options
     this.observer = new Observer()
+    this.params = new SliderParams(options)
     this.slider = document.createElement('div')
   }
   static template = [Values, Range, Scale]
@@ -27,14 +29,11 @@ export class Slider {
     this.$el.append(this.slider)
     $(this.$el).addClass('dbl_slider-container')
     const $root = this.$el.children('.slider')
-    setOptions(this.options)
-
-    console.log(SliderComponent.prototype)
 
    this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
       const $el = this.$el.find(`.${Component.className}`)
-      const component = new Component($el, {observer: this.observer})
+      const component = new Component($el, {observer: this.observer, params: this.params})
       $el.append(component.toHTML())
 
       return component
@@ -42,27 +41,30 @@ export class Slider {
     this.components.forEach(component => {
       component.init()
     })
-    this.setOrientation(SliderComponent.prototype.orientation)
+    this.setOrientation(this.params.orientation)
     return this
   }
 
   // получение параметров "на лету"
-  set(options: {
-    min?: number
-    max?: number
-    step?: number
-    value1?: number
-    value2?: number
-    multirange?: boolean
-  }) {
-    setOptions(options)
-    this.observer.emit('slider:set', options)
-    this.setOrientation(SliderComponent.prototype.orientation)
+  set(options: Params) {
+    // Object.keys(options).forEach((key) => {
+    //   if (isKey(options, key)) {
+    //     this.params[key]
+    //   }
+    // })
+    let temp = {...this.params.defOpt, ...options}
+    Object.entries(temp).forEach( (key, value) => {
+      console.log(key)
+    })
+
+    this.observer.emit('slider:set')
+    this.setOrientation(this.params.orientation)
   }
 
-  private setOrientation(value?: string) {
+  private setOrientation(value: string) {
     const vertical = 'dbl_slider-container--vertical'
     const horizontal = 'dbl_slider-container--horizontal'
+
     switch (value) {
       case 'horizontal': {
         this.$el.addClass(horizontal)
@@ -75,4 +77,8 @@ export class Slider {
       default: throw new Error('Invalid value of orientation slider')
     }
   }
+}
+
+function isKey<T>(x: T, k: PropertyKey): k is keyof T {
+  return k in x
 }

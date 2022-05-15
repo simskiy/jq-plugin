@@ -15,7 +15,7 @@ export class Scale extends SliderComponent implements IScale {
       ...options
     })
   }
-  scale = new ScaleDraw()
+  scale = new ScaleDraw(this.params)
 
   toHTML() {
     return ''

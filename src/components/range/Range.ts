@@ -16,7 +16,7 @@ export class Range extends SliderComponent {
     })
   }
   static className = 'range'
-  slider = new RangeDraw(this.$root)
+  slider = new RangeDraw(this.$root, this.params)
 
   toHTML() {
     return ''
@@ -35,9 +35,9 @@ export class Range extends SliderComponent {
   onInput(event: {target: HTMLInputElement}) {
     this.observer.emit('thumb:input', event.target)
     switch (event.target.dataset.input) {
-      case '1': { SliderComponent.prototype.value1 = +event.target.value
+      case '1': { this.params.value1 = +event.target.value
         this.observer.emit('range:input', event.target.dataset.input)}; break
-      case '2': { SliderComponent.prototype.value2 = +event.target.value
+      case '2': { this.params.value2 = +event.target.value
         this.observer.emit('range:input', event.target.dataset.input)};break
     }
   }

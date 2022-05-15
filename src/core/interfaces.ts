@@ -1,21 +1,11 @@
 import { Observer } from "./Observer";
+import { SliderParams } from "./SliderParams";
 
 export interface Options {
-  // max: number;
   name?: string
-  // min: number
-  // max: number
-  // value1: number
-  // value2: number
-  // step: number
-  // orientation: string
   observer: Observer
   listeners?: string[]
-
-  // DEBUG
-  // components?: any
-
-  // [x: string]: string | number
+  params: SliderParams
 }
 
 export interface SliderOptions {
@@ -26,6 +16,17 @@ export interface SliderOptions {
   step?: number
   orientation?: string
   multirange?: boolean
+}
+
+export interface Params {
+  min?: number
+  max?: number
+  value1?: number
+  value2?: number
+  step?: number
+  multirange?: boolean
+  orientation?: string
+  // [x: string]: number | boolean | string | undefined
 }
 
 export interface Slide {

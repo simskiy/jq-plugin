@@ -15,7 +15,7 @@ export class Values extends SliderComponent implements IValues {
       ...options
     })
   }
-  value = new ValueDraw()
+  value = new ValueDraw(this, this.params)
 
   toHTML() {
     return ``
