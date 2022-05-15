@@ -38,3 +38,7 @@ function getOptions(opt?: Options) {
     }
     return {...defOpt, ...opt}
   }
+
+export function rounded(num: number) {
+  return Number(num.toFixed(1))
+}

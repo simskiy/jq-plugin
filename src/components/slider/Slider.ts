@@ -2,9 +2,7 @@ import {Values} from '@components/values/Values'
 import {Range} from '@components/range/Range'
 import {Scale} from '@components/scale/Scale'
 import {ISliderComponent} from '@/core/SliderComponent'
-import {SliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
-import {SliderOptions} from '@core/interfaces'
 import { SliderParams } from '@/core/SliderParams'
 
 import { Params } from '@core/interfaces'
@@ -47,18 +45,20 @@ export class Slider {
 
   // получение параметров "на лету"
   set(options: Params) {
-    // Object.keys(options).forEach((key) => {
-    //   if (isKey(options, key)) {
-    //     this.params[key]
-    //   }
-    // })
-    let temp = {...this.params.defOpt, ...options}
-    Object.entries(temp).forEach( (key, value) => {
-      console.log(key)
-    })
+    this.params.min = options.min || this.params.min
+    this.params.max = options.max || this.params.max
+    this.params.step = options.step || this.params.step
+    this.params.value1 = options.value1 || this.params.value1
+    this.params.value2 = options.value2 || this.params.value2
+    this.params.multirange = options.multirange || this.params.multirange
+    this.params.orientation = options.orientation || this.params.orientation
 
+    // this.observer.emit('range:set')
+    // this.observer.emit('scale:set')
+    // this.observer.emit('value:set')
     this.observer.emit('slider:set')
     this.setOrientation(this.params.orientation)
+    console.log(this.params)
   }
 
   private setOrientation(value: string) {
@@ -79,6 +79,6 @@ export class Slider {
   }
 }
 
-function isKey<T>(x: T, k: PropertyKey): k is keyof T {
-  return k in x
-}
+// function isKey<T>(x: T, k: PropertyKey): k is keyof T {
+//   return k in x
+// }

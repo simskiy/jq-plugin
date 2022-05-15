@@ -77,6 +77,7 @@ export class RangeDraw implements IRangeDraw{
         } else {
           this.slide1.value = this.params.min.toString()
         }
+        this.params.value1 = +this.slide1.value
         break }
       case '2': {
         if (this.params.multirange) {
@@ -84,6 +85,7 @@ export class RangeDraw implements IRangeDraw{
         } else {
           this.slide2.value = this.slide1.value
         }
+        this.params.value2 = +this.slide2.value
         break }
       default: throw new Error('Invalid data-input')
     }
