@@ -1,6 +1,5 @@
-import { SliderComponent } from "@/core/SliderComponent"
 import { SliderParams } from "@/core/SliderParams"
-// import { Slider } from "../slider/Slider"
+import {rounded} from "@/core/utils"
 
 interface IScaleDraw {
   init(min: number, max: number): HTMLElement
@@ -23,8 +22,8 @@ export class ScaleDraw implements IScaleDraw {
     if (this.ul.hasChildNodes()) {
       this.ul.remove()
       this.ul = document.createElement('ul')
-      // this.min = SliderComponent.prototype.min
-      // this.max = SliderComponent.prototype.max
+      this.min = this.params.min
+      this.max = this.params.max
     }
     this.ul.className = 'scale__list'
     return this.draw()
@@ -44,6 +43,4 @@ export class ScaleDraw implements IScaleDraw {
   }
 }
 
-function rounded(num: number) {
-  return Number(num.toFixed(1))
-}
+

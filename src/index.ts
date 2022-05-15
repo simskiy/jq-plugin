@@ -4,8 +4,6 @@ import 'jquery'
 
 import './styles/main.scss'
 import {Slider} from '@components/slider/Slider'
-import { SliderComponent } from './core/SliderComponent'
-import { SliderOptions } from './core/interfaces'
 
 (function ($) {
   let slider: Slider
@@ -27,11 +25,11 @@ import { SliderOptions } from './core/interfaces'
 // $('#app').dblSlider({value1: 20})
 $('#app1').dblSlider()
 let slider = $('#app2').dblSlider({min: 0, max: 100, value1: 20, value2: 50})
-$('#btn').on('click', () => slider.set({ value1: 37, max: 100, multirange: false}))
-// $('#mr').on('change', function () {
-//   if ($('#mr').prop('checked')) {
-//     slider.set({multirange: true, orientation: 'horizontal'})
-//   } else {
-//     slider.set({multirange: false, orientation: 'vertical'})
-//   }
-// })
+$('#btn').on('click', () => slider.set({ value1: 30, value2: 140, step: 10, max: 200, multirange: false}))
+$('#mr').on('change', function () {
+  if ($('#mr').prop('checked')) {
+    slider.set({multirange: true, orientation: 'horizontal'})
+  } else {
+    slider.set({multirange: false, orientation: 'vertical'})
+  }
+})
