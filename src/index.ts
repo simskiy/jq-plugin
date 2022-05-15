@@ -9,12 +9,12 @@ import { SliderOptions } from './core/interfaces'
 
 (function ($) {
   let slider: Slider
-  $.fn.dblSlider = function (options = {}) {
+  $.fn.dblSlider = function (options) {
     slider = new Slider(this, options)
     slider.render()
     return this
   }
-  $.fn.set = function (options = {}) {
+  $.fn.set = function (options) {
     if (this.hasClass('dbl_slider-container')) {
       slider.set(options)
     } else {
@@ -25,13 +25,13 @@ import { SliderOptions } from './core/interfaces'
 })(jQuery)
 
 // $('#app').dblSlider({value1: 20})
-// $('#app1').dblSlider({min: 0, max: 200, value1: 50, value2: 70})
-let slider = $('#app2').dblSlider({value1: 20, value2: 50})
-// $('#mr').on('change', () => slider.set({ value1: 30, max: 200, multirange: false}))
-$('#mr').on('change', function () {
-  if ($('#mr').prop('checked')) {
-    slider.set({multirange: true, orientation: 'horizontal'})
-  } else {
-    slider.set({multirange: false, orientation: 'vertical'})
-  }
-})
+$('#app1').dblSlider()
+let slider = $('#app2').dblSlider({min: 0, max: 100, value1: 20, value2: 50})
+$('#btn').on('click', () => slider.set({ value1: 37, max: 100, multirange: false}))
+// $('#mr').on('change', function () {
+//   if ($('#mr').prop('checked')) {
+//     slider.set({multirange: true, orientation: 'horizontal'})
+//   } else {
+//     slider.set({multirange: false, orientation: 'vertical'})
+//   }
+// })

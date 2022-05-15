@@ -10,7 +10,7 @@ interface Options {
 
 interface JQuery {
   dblSlider: (options?: Options) => JQuery
-  set: (options?: Options) => JQuery
+  set: (options: Options) => JQuery
 }
 
 
