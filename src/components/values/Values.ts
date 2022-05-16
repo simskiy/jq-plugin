@@ -25,6 +25,6 @@ export class Values extends SliderComponent implements IValues {
     super.init()
     this.$root.append(this.value.init())
     this.observer.subscribe('thumb:input', (el: HTMLInputElement) => this.value.changeValues(el) )
-    this.observer.subscribe('slider:set', () => this.value.init())
+    this.observer.subscribe('value:set', () => this.value.init())
   }
 }

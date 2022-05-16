@@ -25,6 +25,6 @@ export class Scale extends SliderComponent implements IScale {
     super.init()
     const scale = this.scale.init()
     this.$root.append(scale)
-    this.observer.subscribe('slider:set', () => this.$root.append(this.scale.init()))
+    this.observer.subscribe('scale:set', () => this.$root.append(this.scale.init()))
   }
 }

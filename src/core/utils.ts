@@ -42,3 +42,7 @@ function getOptions(opt?: Options) {
 export function rounded(num: number) {
   return Number(num.toFixed(1))
 }
+
+export function calcPos(currentValue: number, min: number, max: number) {
+  return 100 * (currentValue / (max - min))
+}

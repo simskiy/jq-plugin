@@ -4,6 +4,7 @@ import {Scale} from '@components/scale/Scale'
 import {ISliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import { SliderParams } from '@/core/SliderParams'
+import { calcPos } from '@/core/utils'
 
 import { Params } from '@core/interfaces'
 export class Slider {
@@ -52,13 +53,13 @@ export class Slider {
     this.params.value2 = options.value2 || this.params.value2
     this.params.multirange = options.multirange || this.params.multirange
     this.params.orientation = options.orientation || this.params.orientation
+    this.params.pos1 = calcPos(this.params.value1, this.params.min, this.params.max)
+    this.params.pos2 = calcPos(this.params.value2, this.params.min, this.params.max)
 
-    // this.observer.emit('range:set')
-    // this.observer.emit('scale:set')
-    // this.observer.emit('value:set')
-    this.observer.emit('slider:set')
+    this.observer.emit('range:set')
+    this.observer.emit('value:set')
+    this.observer.emit('scale:set')
     this.setOrientation(this.params.orientation)
-    console.log(this.params)
   }
 
   private setOrientation(value: string) {
