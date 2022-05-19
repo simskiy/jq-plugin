@@ -22,7 +22,7 @@ import {Slider} from '@components/slider/Slider'
   }
 })(jQuery)
 
-// $('#app').dblSlider({value1: 20})
+$('#app').dblSlider({value1: 20})
 $('#app1').dblSlider({min: -100, max:200})
 let slider = $('#app2').dblSlider({min: 0, max: 100, value1: 20, value2: 50})
 $('#btn').on('click', () => slider.set({ value1: 30, value2: 140, step: 10, max: 200, multirange: false}))
@@ -33,3 +33,5 @@ $('#mr').on('change', function () {
     slider.set({multirange: false, orientation: 'vertical'})
   }
 })
+
+// $('#app').dblSlider()

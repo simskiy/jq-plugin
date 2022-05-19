@@ -20,8 +20,6 @@ export class SliderParams {
     step: number,
     value1: number,
     value2: number,
-    // pos1: number,
-    // pos2: number,
     multirange: boolean,
     orientation: string
   }
@@ -46,21 +44,13 @@ export class SliderParams {
       value2: options?.value2 ?? this._defOpt.value2,
       multirange: options?.multirange ?? this._defOpt.multirange,
       orientation: options?.orientation ?? this._defOpt.orientation,
-      // pos1: 100 * (this.value1 / (this.max - this.min)),
-      // pos2: 100 * (this.value2 / (this.max - this.min))
       pos1: 0,
-      pos2: 0,
+      pos2: 0
     }
-    // this.params.pos1 = ))
+
+    this.params.pos1 = calcPos(this.params.value1, this.params.min, this.params.max)
+    this.params.pos2 = calcPos(this.params.value2, this.params.min, this.params.max)
   }
-
-  // private calcPosition1 (value = this._defOpt.value1) {
-  //   return 100 * (value / (this.params.max - this.params.min))
-  // }
-
-  // private calcPosition2 (value = this._defOpt.value2) {
-  //   return 100 * (value / (this.params.max - this.params.min))
-  // }
 
   get defOpt() {
     return this._defOpt
@@ -87,11 +77,11 @@ export class SliderParams {
   }
 
   get pos1() {
-    return 100 * (this.params.value1 / (this.params.max - this.params.min))
+    return this.params.pos1
   }
 
   get pos2() {
-    return 100 * (this.params.value2 / (this.params.max - this.params.min))
+    return this.params.pos2
   }
 
   get orientation() {
@@ -123,11 +113,11 @@ export class SliderParams {
   }
 
   set pos1(value) {
-    this.params.pos1 = 100 * (value / (this.params.max - this.params.min))
+    this.params.pos1 = calcPos(value, this.params.min, this.params.max)
   }
 
   set pos2(value) {
-    this.params.pos2 = 100 * (value / (this.params.max - this.params.min))
+    this.params.pos2 = calcPos(value, this.params.min, this.params.max)
   }
 
   set orientation(value) {
@@ -137,5 +127,6 @@ export class SliderParams {
   set multirange(value) {
     this.params.multirange = value
   }
+
 
 }

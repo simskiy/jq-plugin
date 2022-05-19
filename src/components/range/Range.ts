@@ -3,7 +3,7 @@ import { RangeDraw } from "./RangeDraw";
 import { ISliderComponent } from "@core/SliderComponent";
 import { IRangeDraw } from "./RangeDraw";
 import { Options } from "@/core/interfaces";
-import { calcPos } from "@/core/utils";
+// import { calcPos } from "@/core/utils";
 
 export interface IRange extends ISliderComponent {
   slider: IRangeDraw

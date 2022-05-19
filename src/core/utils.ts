@@ -44,5 +44,5 @@ export function rounded(num: number) {
 }
 
 export function calcPos(currentValue: number, min: number, max: number) {
-  return 100 * (currentValue / (max - min))
+  return (currentValue - min) / (max - min) * 100
 }

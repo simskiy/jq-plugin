@@ -41,19 +41,7 @@ export class RangeDraw implements IRangeDraw{
   }
 
   drawBackgroundRange(multirange: boolean) {
-    let percent1: number = 0
-    let percent2: number = 0
-    this.params.pos1 = 100 * (this.params.value1 / (this.params.max - this.params.min))
-    this.params.pos2 = 100 * (this.params.value2 / (this.params.max - this.params.min))
-    if (multirange) {
-      percent1 = 100 * (Number(this.slide1.value) / (this.params.max - this.params.min))
-      percent2 = 100 * (Number(this.slide2.value) / (this.params.max - this.params.min))
-    } else {
-      percent1 = 0
-      percent2 = +this.slide2.value / this.params.max * 100
-    }
-    this.track.style.background = `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
-
+    this.track.style.background = `linear-gradient(to right, #dadae5 ${this.params.pos1}%, #3264fe ${this.params.pos1}%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
   }
 
   setRangeProperty() {
