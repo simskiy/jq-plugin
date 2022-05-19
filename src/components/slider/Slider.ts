@@ -41,8 +41,6 @@ export class Slider {
       component.init()
     })
     this.setOrientation(this.params.orientation)
-
-    console.log(this.params)
     return this
   }
 

@@ -55,6 +55,7 @@ export class ValueDraw {
 
   private transformThumb(pos: number, width: number) {
     const shift = (this.widthThumb * pos / 100) + ((width - this.widthThumb) / 2)
+    console.log(pos)
     return `translateX(-${shift}px)`
   }
 }
