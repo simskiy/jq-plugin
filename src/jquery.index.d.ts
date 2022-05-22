@@ -6,6 +6,7 @@ interface Options {
   step?: number
   orientation?: string
   multirange?: boolean
+  tip?: boolean
 }
 
 interface JQuery {

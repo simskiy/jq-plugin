@@ -1,4 +1,3 @@
-import { Params } from "./interfaces";
 import { calcPos } from "./utils";
 
 export class SliderParams {
@@ -12,6 +11,7 @@ export class SliderParams {
     pos2: number;
     multirange: boolean;
     orientation: string;
+    tip: boolean;
   };
 
   private _defOpt: {
@@ -21,10 +21,11 @@ export class SliderParams {
     value1: number,
     value2: number,
     multirange: boolean,
-    orientation: string
+    orientation: string,
+    tip: boolean
   }
 
-  constructor(options?: {min?: number, max?: number, step?: number, value1?: number, value2?: number, multirange?: boolean, orientation?: string}) {
+  constructor(options?: {min?: number, max?: number, step?: number, value1?: number, value2?: number, multirange?: boolean, orientation?: string, tip?: boolean}) {
 
     this._defOpt = {
       min: 0,
@@ -34,6 +35,7 @@ export class SliderParams {
       value2: 80,
       multirange: true,
       orientation: 'horizontal',
+      tip: true
     }
 
     this.params = {
@@ -44,8 +46,9 @@ export class SliderParams {
       value2: options?.value2 ?? this._defOpt.value2,
       multirange: options?.multirange ?? this._defOpt.multirange,
       orientation: options?.orientation ?? this._defOpt.orientation,
+      tip: options?.tip || this._defOpt.tip,
       pos1: 0,
-      pos2: 0
+      pos2: 0,
     }
 
     this.params.pos1 = calcPos(this.params.value1, this.params.min, this.params.max)
@@ -92,6 +95,10 @@ export class SliderParams {
     return this.params.multirange
   }
 
+  get tip() {
+    return this.params.tip
+  }
+
   set min(value) {
     this.params.min = value
   }
@@ -128,5 +135,7 @@ export class SliderParams {
     this.params.multirange = value
   }
 
-
+  set tip(value) {
+    this.params.tip = value
+  }
 }

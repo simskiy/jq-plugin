@@ -41,7 +41,9 @@ export class RangeDraw implements IRangeDraw{
   }
 
   drawBackgroundRange(multirange: boolean) {
-    this.track.style.background = `linear-gradient(to right, #dadae5 ${this.params.pos1}%, #3264fe ${this.params.pos1}%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
+    const doubleThumb = `linear-gradient(to right, #dadae5 ${this.params.pos1}%, #3264fe ${this.params.pos1}%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
+    const singleThumb = `linear-gradient(to right, #3264fe 0%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
+    this.track.style.background = multirange ? doubleThumb : singleThumb
   }
 
   setRangeProperty() {

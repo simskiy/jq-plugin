@@ -23,11 +23,11 @@ export class ValueDraw {
   }
 
   setValues() {
-    if(this.params.multirange) {
-      this.label1.style.display = 'inline'
-    } else {
-      this.label1.style.display = 'none'
-    }
+    const showFirstThumb = (this.params.multirange) || (this.params.multirange && this.params.tip) ? 'inline' : 'none'
+    const showSecondThumb = this.params.tip ? 'inline' : 'none'
+    this.label1.style.display = showFirstThumb
+    this.label2.style.display = showSecondThumb
+
     this.setPosition()
     this.label1.textContent = this.params.value1.toString()
     this.label2.textContent = this.params.value2.toString()
@@ -55,7 +55,6 @@ export class ValueDraw {
 
   private transformThumb(pos: number, width: number) {
     const shift = (this.widthThumb * pos / 100) + ((width - this.widthThumb) / 2)
-    console.log(pos)
     return `translateX(-${shift}px)`
   }
 }

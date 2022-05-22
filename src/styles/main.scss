@@ -112,7 +112,6 @@
   .values {
     display: flex;
     justify-content: space-between;
-    // width: calc(100% - 10px);
     width: 100%;
     position: relative;
     margin: auto;
@@ -122,15 +121,12 @@
     &__lable {
       position: absolute;
       min-width: 10px;
-      // display: flex;
-      // width: 30px;
-      // justify-content: center;
       transform: translateX(-5px);
       text-align: center;
-    }
 
-    &__lable:last-child {
-      // transform: translateX(10px);
+      &--hidden {
+        visibility: hidden;
+      }
     }
   }
   .scale {

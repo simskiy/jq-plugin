@@ -51,13 +51,14 @@ export class Slider {
     this.params.step = options.step || this.params.step
     this.params.value1 = options.value1 || this.params.value1
     this.params.value2 = options.value2 || this.params.value2
-    this.params.multirange = options.multirange || this.params.multirange
+    this.params.multirange = options.multirange ?? this.params.multirange
     this.params.orientation = options.orientation || this.params.orientation
     this.params.pos1 = options.value1 || this.params.value1
     this.params.pos2 = options.value2 || this.params.value2
+    this.params.tip = options.tip ?? this.params.tip
 
-    this.observer.emit('range:set')
     this.observer.emit('value:set')
+    this.observer.emit('range:set')
     this.observer.emit('scale:set')
     this.setOrientation(this.params.orientation)
   }
@@ -79,7 +80,3 @@ export class Slider {
     }
   }
 }
-
-// function isKey<T>(x: T, k: PropertyKey): k is keyof T {
-//   return k in x
-// }
