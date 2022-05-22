@@ -23,34 +23,27 @@ export class RangeDraw implements IRangeDraw{
   init() {
     this.track.className = 'range__track'
     this.fillSliderProperty()
-
     this.drawTracks()
+    this.params.pos1 = +this.slide1.value
+    this.params.pos2 = +this.slide2.value
 
     return [this.track, this.slide1, this.slide2]
   }
 
    drawTracks(data?: string) {
+    this.drawBackgroundRange(this.params.multirange)
     if (Number(this.slide2.value) - Number(this.slide1.value) < this.params.step && data) {
       this.stopThumb(data)
     } else {
-      this.drawBackgroundRange(this.params.multirange)
       this.params.value1 = +this.slide1.value
       this.params.value2 = +this.slide2.value
     }
   }
 
   drawBackgroundRange(multirange: boolean) {
-    let percent1: number = 0
-    let percent2: number = 0
-
-    if (multirange) {
-      percent1 = (Number(this.slide1.value) - this.params.min) / (this.params.max - this.params.min) * 100
-      percent2 = (Number(this.slide2.value) - this.params.min) / (this.params.max - this.params.min) * 100
-    } else {
-      percent1 = 0
-      percent2 = +this.slide2.value / this.params.max * 100
-    }
-    this.track.style.background = `linear-gradient(to right, #dadae5 ${percent1}%, #3264fe ${percent1}%, #3264fe ${percent2}%, #dadae5 ${percent2}%)`
+    const doubleThumb = `linear-gradient(to right, #dadae5 ${this.params.pos1}%, #3264fe ${this.params.pos1}%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
+    const singleThumb = `linear-gradient(to right, #3264fe 0%, #3264fe ${this.params.pos2}%, #dadae5 ${this.params.pos2}%)`
+    this.track.style.background = multirange ? doubleThumb : singleThumb
   }
 
   setRangeProperty() {
@@ -78,6 +71,7 @@ export class RangeDraw implements IRangeDraw{
           this.slide1.value = this.params.min.toString()
         }
         this.params.value1 = +this.slide1.value
+        this.params.pos1 = this.params.value1
         break }
       case '2': {
         if (this.params.multirange) {
@@ -86,6 +80,7 @@ export class RangeDraw implements IRangeDraw{
           this.slide2.value = this.slide1.value
         }
         this.params.value2 = +this.slide2.value
+        this.params.pos2 = this.params.value2
         break }
       default: throw new Error('Invalid data-input')
     }
