@@ -16,4 +16,11 @@ import '@styles/page.scss'
 //     slider.set({multirange: false})
 //   }
 // })
-
+const slide1 = $('#app-1').dblSlider()
+$('#slider-1-range').on('change', () => {
+  if ($('#slider-1-range').is(':checked')) {
+    slide1.set({multirange: true})
+  } else {
+    slide1.set({multirange: false})
+  }
+})

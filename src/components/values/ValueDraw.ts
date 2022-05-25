@@ -23,8 +23,11 @@ export class ValueDraw {
   }
 
   setValues() {
-    const showFirstThumb = (this.params.multirange) || (this.params.multirange && this.params.tip) ? 'inline' : 'none'
-    const showSecondThumb = this.params.tip ? 'inline' : 'none'
+
+    // const showFirstThumb = (this.params.multirange) || (this.params.multirange && this.params.tip) ? 'inline' : 'none'
+    // const showSecondThumb = this.params.tip ? 'inline' : 'none'
+    const showFirstThumb = this.params.tip ? 'inline' : 'none'
+    const showSecondThumb = (this.params.multirange) || (this.params.multirange && this.params.tip) ? 'inline' : 'none'
     this.label1.style.display = showFirstThumb
     this.label2.style.display = showSecondThumb
 
