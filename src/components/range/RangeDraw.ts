@@ -1,4 +1,3 @@
-import { SliderComponent } from "@/core/SliderComponent"
 import { SliderParams } from "@/core/SliderParams"
 
 export interface IRangeDraw {
@@ -24,18 +23,21 @@ export class RangeDraw implements IRangeDraw{
     this.track.className = 'range__track'
     this.fillSliderProperty()
     this.drawTracks()
-    this.params.pos1 = +this.slide1.value
-    this.params.pos2 = +this.slide2.value
+    this.params.pos1 = this.params.value1
+    this.params.pos2 = +this.params.value2
 
     return [this.track, this.slide1, this.slide2]
   }
 
   drawTracks(data?: string) {
+    if (!this.params.multirange) {
+      this.slide2.style.display = 'none'
+    } else {
+      this.slide2.style.display = 'inline'
+    }
+
     if (Number(this.slide2.value) - Number(this.slide1.value) < this.params.step && data) {
       this.stopThumb(data)
-    } else {
-      this.params.value1 = +this.slide1.value
-      this.params.value2 = +this.slide2.value
     }
     this.drawBackgroundRange(this.params.multirange)
   }
@@ -63,8 +65,6 @@ export class RangeDraw implements IRangeDraw{
       case '2': {
         if (this.params.multirange) {
           this.slide2.value = (+this.slide1.value + this.params.step).toString()
-        } else {
-          // this.slide2.value = this.params.value2.toString()
         }
         this.params.value2 = +this.slide2.value
         this.params.pos2 = this.params.value2
@@ -74,15 +74,6 @@ export class RangeDraw implements IRangeDraw{
   }
 
   private fillSliderProperty (this: RangeDraw) {
-    if (!this.params.multirange) {
-      this.params.value2 = +this.params.value1 > +this.params.value2 ? (+this.params.value1 + this.params.step) : this.params.value2
-      this.slide2.style.display = 'none'
-    } else {
-      this.slide2.style.display = 'inline'
-      // this.slide2.value = this.params.value2.toString()
-    }
-
-
     for (let slide of [this.slide1, this.slide2]) {
       slide.min = this.params.min.toString()
       slide.max = this.params.max.toString()
@@ -91,8 +82,6 @@ export class RangeDraw implements IRangeDraw{
       slide.value = slide === this.slide1 ? this.params.value1.toString() : this.params.value2.toString()
       slide.dataset.input = slide === this.slide1? '1': '2'
     }
-
-
   }
 }
 
