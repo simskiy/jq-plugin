@@ -27,9 +27,10 @@ export class ValueDraw {
     const showSecondThumb = this.params.multirange && this.params.tip ? 'inline' : 'none'
     this.label1.style.display = showFirstThumb
     this.label2.style.display = showSecondThumb
-    this.setPosition()
+    // this.setPosition()
     this.label1.textContent = this.params.value1.toString()
     this.label2.textContent = this.params.value2.toString()
+    this.setPosition()
   }
 
   changeValues(el: HTMLInputElement) {

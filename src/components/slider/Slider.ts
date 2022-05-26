@@ -4,7 +4,6 @@ import {Scale} from '@components/scale/Scale'
 import {ISliderComponent} from '@/core/SliderComponent'
 import {Observer, IObserver} from '@core/Observer'
 import { SliderParams } from '@/core/SliderParams'
-// import { calcPos } from '@/core/utils'
 
 import { Params } from '@core/interfaces'
 export class Slider {
@@ -53,12 +52,10 @@ export class Slider {
     this.params.value2 = options.value2 || this.params.value2
     this.params.multirange = options.multirange ?? this.params.multirange
     this.params.orientation = options.orientation || this.params.orientation
-    this.params.pos1 = options.value1 || this.params.value1
-    this.params.pos2 = options.value2 || this.params.value2
     this.params.tip = options.tip ?? this.params.tip
 
-    this.observer.emit('value:set')
     this.observer.emit('range:set')
+    this.observer.emit('value:set')
     this.observer.emit('scale:set')
     this.setOrientation(this.params.orientation)
   }

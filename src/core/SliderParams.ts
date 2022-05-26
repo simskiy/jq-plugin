@@ -132,11 +132,19 @@ export class SliderParams {
   }
 
   set pos1(value) {
-    this.params.pos1 = calcPos(value, this.params.min, this.params.max)
+    if (value >= this.params.value2) {
+      this.params.pos1 = calcPos(this.params.value2 - this.params.step, this.params.min, this.params.max)
+    } else {
+      this.params.pos1 = calcPos(value, this.params.min, this.params.max)
+    }
   }
 
   set pos2(value) {
-    this.params.pos2 = calcPos(value, this.params.min, this.params.max)
+    if (value <= this.params.value1) {
+      this.params.pos2 = calcPos(this.params.value1 + this.params.step, this.params.min, this.params.max)
+    } else {
+      this.params.pos2 = calcPos(value, this.params.min, this.params.max)
+    }
   }
 
   set orientation(value) {
