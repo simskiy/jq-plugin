@@ -100,15 +100,15 @@ export class SliderParams {
   }
 
   set min(value) {
-    this.params.min = value
+    this.params.min = value >= this.params.max ? this.params.max - this.params.step : value
   }
 
   set max(value) {
-    this.params.max = value
+    this.params.max = value <= this.params.min ? this.params.min + this.params.step : value
   }
 
   set step(value) {
-    this.params.step = value
+    this.params.step = value > 0 ? value : 1
   }
 
   set value1(value) {

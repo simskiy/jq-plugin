@@ -25,7 +25,6 @@ export class RangeDraw implements IRangeDraw{
     this.drawTracks()
     this.params.pos1 = this.params.value1
     this.params.pos2 = +this.params.value2
-
     return [this.track, this.slide1, this.slide2]
   }
 

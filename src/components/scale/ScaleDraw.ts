@@ -30,7 +30,7 @@ export class ScaleDraw implements IScaleDraw {
   }
 
   draw() {
-    let rullerDivision = rounded((this.max - this.min) / 10)
+    let rullerDivision = rounded((this.params.max - this.params.min) / 10)
 
     for (let i = 0; i < 11; i++) {
       let li = document.createElement('li')

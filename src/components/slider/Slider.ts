@@ -24,10 +24,10 @@ export class Slider {
   static template = [Values, Range, Scale]
 
   render() {
-    this.slider.classList.add('slider')
+    this.slider.classList.add('dbl_slider')
     this.$el.append(this.slider)
     $(this.$el).addClass('dbl_slider-container')
-    const $root = this.$el.children('.slider')
+    const $root = this.$el.children('.dbl_slider')
 
    this.components = Slider.template.map((Component) => {
       $root.append(`<div class="${Component.className}"></div>`)
@@ -46,7 +46,7 @@ export class Slider {
 
   // получение параметров "на лету"
   set(options: Params) {
-    this.params.min = options.min || this.params.min
+    this.params.min = options.min ?? this.params.min
     this.params.max = options.max || this.params.max
     this.params.step = options.step || this.params.step
     this.params.value1 = options.value1 || this.params.value1
