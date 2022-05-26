@@ -18,7 +18,6 @@ export abstract class EventListener implements IEventListener{
   }
 
   protected initListeners() {
-    // if (this.listeners) {
       this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)
         if (!this[method])
@@ -26,16 +25,13 @@ export abstract class EventListener implements IEventListener{
         this[method] = this[method].bind(this)
         this.$root.on(listener, this[method])
       })
-    // }
   }
 
   protected removeListeners() {
-    // if (this.listeners) {
       this.listeners.forEach((listener: string) => {
         const method: string = getMethodName(listener)
         this.$root.off(listener, this[method])
       })
-    // }
   }
 }
 
