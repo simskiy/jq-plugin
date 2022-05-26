@@ -112,10 +112,14 @@ export class SliderParams {
   }
 
   set value1(value) {
-    if (this.multirange && value == this.params.max) {
-      this.params.value1 = value - this.params.step
+    if (value >= this.params.value2) {
+      this.params.value1 = this.params.value2 - this.params.step
     } else {
-      this.params.value1 = value
+      if (this.multirange && value == this.params.max) {
+        this.params.value1 = value - this.params.step
+      } else {
+        this.params.value1 = value
+      }
     }
   }
 
