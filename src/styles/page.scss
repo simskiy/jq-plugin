@@ -1,3 +1,11 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
 .switch-wrapper {
     display: flex;
     align-items: center;
@@ -74,11 +82,18 @@
 
 .panel {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 15px;
   user-select: none;
+  border: 1px solid black;
+  margin-top: 5px;
+
+  &__item {
+    margin-top: 10px;
+  }
 
   & input:checked + .input--switch {
     box-shadow: inset -32px 0 black;

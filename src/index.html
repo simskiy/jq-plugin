@@ -7,57 +7,46 @@
 	<title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-  <div class="slider slider-1">
+  <div class="slider">
     <div id="app-1"></div>
     <ul class="panel">
 
-      <li class="panel-item">
-        <div class="switch-wrapper">
-          <span class="switch-title">range</span>
-          <input  type="checkbox" id="slider-1-range" checked>
-          <label class="input input--switch" for="slider-1-range">
-            <span class="input--on">0</span>
-            <span class="input--off">1</span>
-          </label>
-        </div>
-      </li>
-
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="input-wrapper">
           <label for="slider-1-min" class="input-label">min</label>
-          <input class="input input--number"type="text" name="" id="slider-1-min">
+          <input class="input input--number" type="number" name="" id="slider-1-min">
         </div>
       </li>
 
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="input-wrapper">
           <label for="slider-1-max" class="input-label">max</label>
-          <input class="input input--number"type="text" name="" id="slider-1-max">
+          <input class="input input--number" type="number" name="" id="slider-1-max">
         </div>
       </li>
 
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="input-wrapper">
           <label for="slider-1-from" class="input-label">from</label>
-          <input class="input input--number"type="text" name="" id="slider-1-from">
+          <input class="input input--number" type="number" name="" id="slider-1-from">
         </div>
       </li>
 
-      <li class="panel-item">
-        <div class="input-wrapper input-wrapper--disable">
+      <li class="panel__item">
+        <div class="input-wrapper">
           <label for="slider-1-to" class="input-label">to</label>
-          <input class="input input--number"type="text" name="" id="slider-1-to" disabled>
+          <input class="input input--number" type="number" name="" id="slider-1-to">
         </div>
       </li>
 
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="input-wrapper">
           <label for="slider-1-step" class="input-label">step</label>
-          <input class="input input--number"type="text" name="" id="slider-1-step">
+          <input class="input input--number" type="text" name="" id="slider-1-step">
         </div>
       </li>
 
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="switch-wrapper">
           <span class="switch-title">orientation</span>
           <input  type="checkbox" id="slider-1-orientation" checked>
@@ -68,9 +57,9 @@
         </div>
       </li>
 
-      <li class="panel-item">
+      <li class="panel__item">
         <div class="switch-wrapper">
-          <span class="switch-title">range</span>
+          <span class="switch-title">tip</span>
           <input  type="checkbox" id="slider-1-tip" checked>
           <label class="input input--switch" for="slider-1-tip">
             <span class="input--on">0</span>
@@ -78,6 +67,18 @@
           </label>
         </div>
       </li>
+
+      <li class="panel__item">
+        <div class="switch-wrapper">
+          <span class="switch-title">range</span>
+          <input  type="checkbox" id="slider-1-range" checked>
+          <label class="input input--switch" for="slider-1-range">
+            <span class="input--on">0</span>
+            <span class="input--off">1</span>
+          </label>
+        </div>
+      </li>
+
     </ul>
   </div>
 

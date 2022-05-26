@@ -23,9 +23,6 @@ export class RangeDraw implements IRangeDraw{
     this.track.className = 'range__track'
     this.fillSliderProperty()
     this.drawTracks()
-    this.params.pos1 = this.params.value1
-    this.params.pos2 = +this.params.value2
-
     return [this.track, this.slide1, this.slide2]
   }
 
@@ -39,6 +36,8 @@ export class RangeDraw implements IRangeDraw{
     if (Number(this.slide2.value) - Number(this.slide1.value) < this.params.step && data) {
       this.stopThumb(data)
     }
+    this.params.pos1 = +this.params.value1
+    this.params.pos2 = +this.params.value2
     this.drawBackgroundRange(this.params.multirange)
   }
 
