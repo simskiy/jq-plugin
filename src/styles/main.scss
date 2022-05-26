@@ -144,6 +144,7 @@ $bgcolor: #000;
     &__label {
       cursor: pointer;
       text-align: center;
+      user-select: none;
       // эти стили надо сделать в js динамическими
       // в зависимости от значений (ширина разная)
       min-width: 24px;
