@@ -101,10 +101,16 @@ export class SliderParams {
 
   set min(value) {
     this.params.min = value >= this.params.max ? this.params.max - this.params.step : value
+    if (value > this.params.value1) {
+      this.params.value1 = value
+    }
   }
 
   set max(value) {
     this.params.max = value <= this.params.min ? this.params.min + this.params.step : value
+    if (value < this.params.value2) {
+      this.params.value2 = value
+    }
   }
 
   set step(value) {
@@ -112,11 +118,21 @@ export class SliderParams {
   }
 
   set value1(value) {
-    if (value >= this.params.value2) {
-      this.params.value1 = this.params.value2 - this.params.step
-    } else {
-      if (this.multirange && value == this.params.max) {
-        this.params.value1 = value - this.params.step
+    if (this.multirange) {
+      if (value < this.params.min) {
+        this.params.value1 = this.params.min
+      } else if (value >= this.params.value2) {
+        this.params.value1 = this.params.value2 - this.params.step
+      } else {
+        this.params.value1 = value
+      }
+    }
+
+    if (!this.multirange) {
+      if (value < this.params.min) {
+        this.params.value1 = this.params.min
+      } else if (value > this.params.max) {
+        this.params.value1 = this.params.max
       } else {
         this.params.value1 = value
       }
@@ -124,27 +140,21 @@ export class SliderParams {
   }
 
   set value2(value) {
-    if ( (this.params.value1 >= this.params.value2) && (this.params.value1 < this.params.max) ) {
-      this.params.value2 = this.params.value1 + this.step
+    if (value <= this.params.value1) {
+      this.params.value2 = this.params.value1 + this.params.step
+    } else if (value > this.params.max) {
+      this.params.value2 = this.params.max
     } else {
       this.params.value2 = value
     }
   }
 
   set pos1(value) {
-    if (value >= this.params.value2) {
-      this.params.pos1 = calcPos(this.params.value2 - this.params.step, this.params.min, this.params.max)
-    } else {
-      this.params.pos1 = calcPos(value, this.params.min, this.params.max)
-    }
+    this.params.pos1 = calcPos(value, this.params.min, this.params.max)
   }
 
   set pos2(value) {
-    if (value <= this.params.value1) {
-      this.params.pos2 = calcPos(this.params.value1 + this.params.step, this.params.min, this.params.max)
-    } else {
-      this.params.pos2 = calcPos(value, this.params.min, this.params.max)
-    }
+    this.params.pos2 = calcPos(value, this.params.min, this.params.max)
   }
 
   set orientation(value) {

@@ -22,8 +22,10 @@ $('#slider-1-tip').on('change', () => {
 $('#slider-1-orientation').on('change', () => {
   if ($('#slider-1-orientation').is(':checked')) {
     slide1.set({orientation: 'horizontal'})
+    $('.slider-1').removeClass('slider--vertical')
   } else {
     slide1.set({orientation: 'vertical'})
+    $('.slider-1').addClass('slider--vertical')
   }
 })
 

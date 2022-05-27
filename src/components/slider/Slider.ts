@@ -48,7 +48,7 @@ export class Slider {
     this.params.min = options.min ?? this.params.min
     this.params.max = options.max || this.params.max
     this.params.step = options.step || this.params.step
-    this.params.value1 = options.value1 || this.params.value1
+    this.params.value1 = options.value1 ?? this.params.value1
     this.params.value2 = options.value2 || this.params.value2
     this.params.multirange = options.multirange ?? this.params.multirange
     this.params.orientation = options.orientation || this.params.orientation
