@@ -25,10 +25,7 @@ export class SliderComponent extends EventListener implements ISliderComponent {
     this.observer = options.observer
     this.params = options.params
     this.options = options
-    this.prepare()
   }
-
-  prepare() {}
 
   // return template of component
   toHTML () {
@@ -36,6 +33,7 @@ export class SliderComponent extends EventListener implements ISliderComponent {
   }
 
   set () {
+    console.log(this.params.range)
   }
 
   init() {
