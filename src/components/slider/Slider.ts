@@ -54,6 +54,7 @@ export class Slider {
     this.params.orientation = options.orientation || this.params.orientation
     this.params.tip = options.tip ?? this.params.tip
 
+    console.log(this.params.multirange)
     this.observer.emit('range:set')
     this.observer.emit('value:set')
     this.observer.emit('scale:set')

@@ -25,6 +25,10 @@ $bgcolor: #000;
       transform-origin: right top;
       transform: translateX(-($width - $box)) rotate(270deg);
     }
+
+    & .scale__label {
+      transform: rotate(90deg);
+    }
   }
 
   .range {
